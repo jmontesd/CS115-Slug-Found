@@ -8,13 +8,17 @@ export const LogInPage = (props) => {
   const { authError, darkMode, isSignedIn, signIn } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const inputClassName = `form-control${darkMode ? ' bg-dark text-white' : ''}`;
+
   if (isSignedIn) return <Redirect to="/" />;
+
   const onSubmit = (e) => {
     e.preventDefault();
     signIn({ email, password });
   };
+
+  const inputClassName = `form-control${darkMode ? ' bg-dark text-white' : ''}`;
   const renderAuthError = <div className="mt-2 alert alert-danger">{authError}</div>;
+
   return (
     <div className="container">
       <form onSubmit={onSubmit}>

@@ -5,17 +5,21 @@ import { signUp as signUpAction } from '../../store/actions/authActions';
 import './SignUpPage.scss';
 
 export const SignUpPage = (props) => {
-  const { authError, darkMode, isSignedIn, signUp } = props;
+  const { authError, darkMode, isLoggedIn, signUp } = props;
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  if (isSignedIn) return <Redirect to="/" />;
-  const renderAuthError = <div className="mt-2 alert alert-danger">{authError}</div>;
+
+  if (isLoggedIn) return <Redirect to="/" />;
+
   const onSubmit = (e) => {
     e.preventDefault();
     signUp({ username, email, password });
   };
+
+  const renderAuthError = <div className="mt-2 alert alert-danger">{authError}</div>;
   const inputClassName = `form-control${darkMode ? ' bg-dark text-white' : ''}`;
+
   return (
     <div className="container">
       <form onSubmit={onSubmit}>
@@ -65,7 +69,7 @@ export const SignUpPage = (props) => {
 
 const mapStateToProps = (state) => ({
   authError: state.auth.authError,
-  isSignedIn: state.firebase.auth.uid,
+  isLoggedIn: state.firebase.auth.uid,
 });
 
 const mapDispatchToProps = (dispatch) => ({

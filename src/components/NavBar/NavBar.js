@@ -20,7 +20,10 @@ const NavBar = (props) => {
 
   const renderSignOutButton = (
     <div className="d-flex flex-row">
-      <Link className="btn btn btn-outline-primary" to="/" onClick={signOut}>
+      <Link to="/submit" className="btn btn-outline-primary mr-2">
+        Submit
+      </Link>
+      <Link className="btn btn-primary" to="/" onClick={signOut}>
         Sign Out
       </Link>
     </div>
