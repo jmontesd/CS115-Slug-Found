@@ -7,7 +7,7 @@ const ItemSummary = () => {
       <div className="card-content grey-text text-darken-3">
         <span className="card-title red-text text-darken-2">Item Title</span>
         <p>
-          Posted by: <span class="blue-text text-darken-2">User Name</span>
+          Posted by: <span class="blue-text text-darken-2">UserName</span>
         </p>
         <p>
           Date: <span class="blue-text text-darken-2">Date Posted</span>{" "}
