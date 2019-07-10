@@ -19,7 +19,7 @@ class Dashboard extends Component {
           </div>
           <div class="col m5 center-align card-panel indigo darken-1 offset-m1">
             <span class="title-color white-text">
-              <h5>Found Items</h5>
+              <h5>FoundItems</h5>
             </span>
             <FoundItem />
           </div>
