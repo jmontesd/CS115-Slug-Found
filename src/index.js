@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+// eslint-disable-next-line
+import $ from 'jquery';
+// eslint-disable-next-line
+import Popper from 'popper.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';

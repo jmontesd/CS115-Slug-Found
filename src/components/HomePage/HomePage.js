@@ -6,18 +6,21 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Item from '../Item/Item';
 
+
 const HomePage = (props) => {
   const { posts, isLoggedIn } = props;
 
   if (!isLoggedIn) return <Redirect to="/login" />;
 
   return (
+
     <div className="container">
-      {posts &&
+      {posts && 
         posts
           .slice()
           .sort((a, b) => b.createdAt - a.createdAt)
-          .map((post) => <Item key={post.id} post={post} />)}
+          .map((post) => <div className="homePost"> <Item key={post.id} id="test2" post={post} /></div>)
+      }
     </div>
   );
 };

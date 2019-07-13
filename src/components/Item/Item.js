@@ -7,15 +7,17 @@ const Item = (props) => {
   const { post } = props;
   return (
     <div className="container">
-      <div>{`${moment(post.createdAt).calendar()}`}</div>
-      <div>
-        <Link to={`/item/${post.id}`}>{post.title}</Link>
+        <div>
+          <Link to={`/item/${post.id}`}>{post.title}</Link>
       </div>
+      <div>{`${moment(post.createdAt).calendar()}`}</div>
       <Link to={`/item/${post.id}`}>
         <img alt="item" src={post.imageURL} />
       </Link>
+      <button class="button"> Delete  </button>
+      <button class="button"> Message  </button>
     </div>
   );
 };
 
-export default Item;
+export default Item; 

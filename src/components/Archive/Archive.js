@@ -34,3 +34,5 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([{ collection: 'posts' }]),
 )(Archive);
+
+// for archive page, need to add collection of deleted posts in firebase
