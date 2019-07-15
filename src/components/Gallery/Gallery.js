@@ -19,7 +19,7 @@ const Gallery = (props) => {
         posts
           .slice()
           .sort((a, b) => b.createdAt - a.createdAt)
-          .map((post) => <div className="gallery"> <Link to={`/item/${post.id}`}>
+          .map((post) => <div className="gallery + grid-container"> <Link to={`/item/${post.id}`}>
                             <img alt="item" src={post.imageURL} id="galleryImg" />
                          </Link> </div>)
       }
