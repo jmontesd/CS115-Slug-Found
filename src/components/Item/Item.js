@@ -7,15 +7,18 @@ const Item = (props) => {
   const { post } = props;
   return (
     <div className="container">
-        <div>
+      <div className="postText">
           <Link to={`/item/${post.id}`}>{post.title}</Link>
       </div>
-      <div>{`${moment(post.createdAt).calendar()}`}</div>
+      <div className=".text"> {`${moment(post.createdAt).calendar()}`} </div>
       <Link to={`/item/${post.id}`}>
         <img alt="item" src={post.imageURL} />
       </Link>
-      <button class="button"> Delete  </button>
-      <button class="button"> Message  </button>
+      <button className="button" id="deleteBtn"> Delete </button> 
+      {/* do only for personal posts */}
+      <div className="divider"/>
+      {/* <button className="button" id="messageBtn"> Message </button> */ /*add only for item page*/}
+      
     </div>
   );
 };

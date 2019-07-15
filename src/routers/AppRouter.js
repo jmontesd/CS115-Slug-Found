@@ -9,6 +9,8 @@ import SubmitPage from '../components/SubmitPage/SubmitPage';
 import NavBar from '../components/NavBar/NavBar';
 import SignUpPage from '../components/SignUpPage/SignUpPage';
 import LogInPage from '../components/LogInPage/LogInPage';
+import Archive from '../components/Archive/Archive';
+import Gallery from '../components/Gallery/Gallery';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -22,6 +24,8 @@ const AppRouter = () => (
         <Route path="/submit" component={SubmitPage} exact />
         <Route path="/login" component={LogInPage} exact />
         <Route path="/signup" component={SignUpPage} exact />
+        <Route path="/archive" component={Archive} exact />
+        <Route path="/gallery" component={Gallery} exact />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

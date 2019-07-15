@@ -1,15 +1,15 @@
 import React from 'react';
-import './HomePage.scss';
+import './Gallery.scss';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Item from '../Item/Item';
+import { Link } from 'react-router-dom';
 
 
-const HomePage = (props) => {
+const Gallery = (props) => {
   const { posts, isLoggedIn } = props;
-  
+
   if (!isLoggedIn) return <Redirect to="/login" />;
 
   return (
@@ -19,10 +19,11 @@ const HomePage = (props) => {
         posts
           .slice()
           .sort((a, b) => b.createdAt - a.createdAt)
-          .map((post) => <div className="homePost"><Item key={post.id} post={post} /> </div>)
+          .map((post) => <div className="gallery"> <Link to={`/item/${post.id}`}>
+                            <img alt="item" src={post.imageURL} id="galleryImg" />
+                         </Link> </div>)
       }
     </div>
-
   );
 };
 
@@ -37,4 +38,4 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([{ collection: 'posts' }]),
-)(HomePage);
+)(Gallery);
