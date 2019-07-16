@@ -2,8 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/storage';
 import 'firebase/auth';
 import 'firebase/firestore';
+import uuid from 'uuid';
 
-// Firebase config
 const firebaseConfig = {
   apiKey: 'AIzaSyBpgMy_ZQuMpxqMW10gZA9cY-tipfmNljo',
   authDomain: 'slug-and-found.firebaseapp.com',
@@ -16,4 +16,31 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 
-export { storage, firebase as default };
+const uploadImage = (imageFile, callBack) => {
+  const id = uuid();
+
+  storage
+    .ref(`images/${id}`)
+    .put(imageFile)
+    .on(
+      'state_changed',
+      () => {
+        // progress function ....
+      },
+      () => {
+        // error function ....
+      },
+      () => {
+        // complete function ....
+        storage
+          .ref('images')
+          .child(id)
+          .getDownloadURL()
+          .then((imageURL) => {
+            callBack(id, imageURL);
+          });
+      },
+    );
+};
+
+export { uploadImage, storage, firebase as default };

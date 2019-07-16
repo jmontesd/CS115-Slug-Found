@@ -8,12 +8,28 @@ export const LogInPage = (props) => {
   const { authError, isSignedIn, signIn } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   if (isSignedIn) return <Redirect to="/" />;
 
+  const validateForm = () => {
+    if (!email) {
+      setError('Please enter an email');
+      return false;
+    }
+    if (!password) {
+      setError('Please enter a password');
+      return false;
+    }
+    return true;
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    signIn({ email, password });
+    if (validateForm()) {
+      setError('');
+      signIn({ email, password });
+    }
   };
 
   return (
@@ -48,7 +64,8 @@ export const LogInPage = (props) => {
         <button type="submit" className="btn btn-primary full-width">
           Sign In
         </button>
-        {authError && <div className="mt-2 alert alert-danger">{authError}</div>}
+        {error && <div className="mt-2 alert alert-danger">{error}</div>}
+        {!error && authError && <div className="mt-2 alert alert-danger">{authError}</div>}
       </form>
     </div>
   );

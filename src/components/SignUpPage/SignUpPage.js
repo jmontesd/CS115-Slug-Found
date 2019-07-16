@@ -10,7 +10,7 @@ export const SignUpPage = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [imageFile, setImageFile] = useState(null);
-  const [error, setError] = useState();
+  const [error, setError] = useState('');
 
   if (isLoggedIn) return <Redirect to="/" />;
 
@@ -89,9 +89,7 @@ export const SignUpPage = (props) => {
         </div>
         <div className="form-group">
           <label htmlFor="file">Profile Picture</label>
-          <div>
-            <input to="file" type="file" onChange={handleChange} />
-          </div>
+          <input className="d-block" to="file" type="file" onChange={handleChange} />
         </div>
         <button type="submit" className="btn btn-primary full-width">
           Sign Up

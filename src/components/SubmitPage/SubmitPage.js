@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import './SubmitPage.scss';
 import { connect } from 'react-redux';
-import uuid from 'uuid';
-import { storage } from '../../firebase/firebase';
+import { uploadImage } from '../../firebase/firebase';
 import { addPost as addPostAction } from '../../store/actions/postActions';
 
 const SubmitPage = (props) => {
@@ -46,29 +45,10 @@ const SubmitPage = (props) => {
     }
     setError('');
 
-    const id = uuid();
-    const uploadTask = storage.ref(`images/${id}`).put(imageFile);
-
-    uploadTask.on(
-      'state_changed',
-      () => {
-        // progrss function ....
-      },
-      () => {
-        // error function ....
-      },
-      () => {
-        // complete function ....
-        storage
-          .ref('images')
-          .child(id)
-          .getDownloadURL()
-          .then((imageURL) => {
-            addPost({ id, title, description, imageURL });
-            setRedirect(id);
-          });
-      },
-    );
+    uploadImage(imageFile, (id, imageURL) => {
+      addPost({ id, title, description, imageURL });
+      setRedirect(id);
+    });
   };
 
   return (

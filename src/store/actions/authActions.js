@@ -1,5 +1,4 @@
-import uuid from 'uuid';
-import { storage } from '../../firebase/firebase';
+import { uploadImage } from '../../firebase/firebase';
 
 export const logIn = (credentials) => (dispatch, getState, { getFirebase }) => {
   const firebase = getFirebase();
@@ -36,34 +35,15 @@ export const signUp = (newUser) => (dispatch, getState, { getFirebase, getFirest
     .auth()
     .createUserWithEmailAndPassword(newUser.email, newUser.password)
     .then((resp) => {
-      const id = uuid();
-      const uploadTask = storage.ref(`images/${id}`).put(newUser.imageFile);
-
-      uploadTask.on(
-        'state_changed',
-        () => {
-          // progrss function ....
-        },
-        () => {
-          // error function ....
-        },
-        () => {
-          // complete function ....
-          storage
-            .ref('images')
-            .child(id)
-            .getDownloadURL()
-            .then((imageURL) => {
-              firestore
-                .collection('users')
-                .doc(resp.user.uid)
-                .set({
-                  username: newUser.username,
-                  profilePictureURL: imageURL,
-                });
-            });
-        },
-      );
+      uploadImage(newUser.imageFile, (id, imageURL) => {
+        firestore
+          .collection('users')
+          .doc(resp.user.uid)
+          .set({
+            username: newUser.username,
+            profilePictureURL: imageURL,
+          });
+      });
     })
     .then(() => {
       dispatch({ type: 'SIGNUP_SUCCESS' });
