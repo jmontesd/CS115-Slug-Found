@@ -18,7 +18,7 @@ const NavBar = (props) => {
     </div>
   );
 
-  const renderSignOutButton = (
+  const renderSubmitSignOutButton = (
     <div className="d-flex flex-row">
       <Link to="/submit" className="btn btn-outline-primary mr-2">
         Submit
@@ -35,7 +35,7 @@ const NavBar = (props) => {
         <Link className="navbar-brand" to="/">
           {'Slug&Found'}
         </Link>
-        {isSignedIn ? renderSignOutButton : renderLogInSignUpButtons}
+        {isSignedIn ? renderSubmitSignOutButton : renderLogInSignUpButtons}
       </div>
     </nav>
   );

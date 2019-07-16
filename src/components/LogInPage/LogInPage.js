@@ -17,10 +17,9 @@ export const LogInPage = (props) => {
   };
 
   const inputClassName = `form-control${darkMode ? ' bg-dark text-white' : ''}`;
-  const renderAuthError = <div className="mt-2 alert alert-danger">{authError}</div>;
 
   return (
-    <div className="container">
+    <div className="auth-wrapper">
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email address</label>
@@ -45,10 +44,10 @@ export const LogInPage = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary full-width">
           Sign In
         </button>
-        {authError && renderAuthError}
+        {authError && <div className="mt-2 alert alert-danger">{authError}</div>}
       </form>
     </div>
   );

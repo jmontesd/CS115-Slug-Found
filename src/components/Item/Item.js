@@ -12,7 +12,7 @@ const Item = (props) => {
         <Link to={`/item/${post.id}`}>{post.title}</Link>
       </div>
       <Link to={`/item/${post.id}`}>
-        <img alt="item" src={post.imageURL} id="test"/>
+        <img alt="item" src={post.imageURL} />
       </Link>
     </div>
   );

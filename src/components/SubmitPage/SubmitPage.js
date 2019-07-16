@@ -54,9 +54,8 @@ const SubmitPage = (props) => {
       () => {
         // progrss function ....
       },
-      (err) => {
+      () => {
         // error function ....
-        console.log(err);
       },
       () => {
         // complete function ....
@@ -105,7 +104,7 @@ const SubmitPage = (props) => {
   );
 };
 const mapDispatchToProps = (dispatch) => ({
-  addPost: (meme) => dispatch(addPostAction(meme)),
+  addPost: (post) => dispatch(addPostAction(post)),
 });
 
 const mapStateToProps = (state) => ({

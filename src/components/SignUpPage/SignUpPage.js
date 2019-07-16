@@ -9,19 +9,45 @@ export const SignUpPage = (props) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [imageFile, setImageFile] = useState(null);
+  const [error, setError] = useState();
 
   if (isLoggedIn) return <Redirect to="/" />;
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    signUp({ username, email, password });
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      setImageFile(image);
+    }
   };
 
-  const renderAuthError = <div className="mt-2 alert alert-danger">{authError}</div>;
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!username) {
+      setError('Please enter an username');
+      return;
+    }
+    if (!email) {
+      setError('Please enter an email');
+      return;
+    }
+    if (!password) {
+      setError('Please enter a password');
+      return;
+    }
+    if (!imageFile) {
+      setError('Please enter an image');
+      return;
+    }
+    setError('');
+
+    signUp({ username, email, password, imageFile });
+  };
+
   const inputClassName = `form-control${darkMode ? ' bg-dark text-white' : ''}`;
 
   return (
-    <div className="container">
+    <div className="auth-wrapper">
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
@@ -58,10 +84,17 @@ export const SignUpPage = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <div className="form-group">
+          <label htmlFor="file">Profile Picture</label>
+          <div>
+            <input to="file" type="file" onChange={handleChange} />
+          </div>
+        </div>
+        <button type="submit" className="btn btn-primary full-width">
           Sign Up
         </button>
-        {authError && renderAuthError}
+        {error && <div className="mt-2 alert alert-danger">{error}</div>}
+        {authError && <div className="mt-2 alert alert-danger">{authError}</div>}
       </form>
     </div>
   );
