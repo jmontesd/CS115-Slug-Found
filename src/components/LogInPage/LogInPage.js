@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { logIn as logInAction } from '../../store/actions/authActions';
 import './LogInPage.scss';
 
@@ -42,6 +42,9 @@ export const LogInPage = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <Link className="mb-2 d-block" to="/reset">
+          Reset Password
+        </Link>
         <button type="submit" className="btn btn-primary full-width">
           Sign In
         </button>

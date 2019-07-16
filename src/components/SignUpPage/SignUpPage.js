@@ -21,27 +21,32 @@ export const SignUpPage = (props) => {
     }
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const validateForm = () => {
     if (!username) {
       setError('Please enter an username');
-      return;
+      return false;
     }
     if (!email) {
       setError('Please enter an email');
-      return;
+      return false;
     }
     if (!password) {
       setError('Please enter a password');
-      return;
+      return false;
     }
     if (!imageFile) {
       setError('Please enter an image');
-      return;
+      return false;
     }
-    setError('');
+    return true;
+  };
 
-    signUp({ username, email, password, imageFile });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      setError('');
+      signUp({ username, email, password, imageFile });
+    }
   };
 
   return (

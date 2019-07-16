@@ -72,3 +72,12 @@ export const signUp = (newUser) => (dispatch, getState, { getFirebase, getFirest
       dispatch({ type: 'SIGNUP_ERROR', err });
     });
 };
+
+export const resetPassword = ({ email }) => (dispatch, getState, { getFirebase }) => {
+  getFirebase()
+    .resetPassword(email)
+    .then(() => {
+      dispatch({ type: 'RESET_PASSWORD_SUCCESS' });
+    })
+    .catch(() => {});
+};

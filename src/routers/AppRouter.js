@@ -9,6 +9,7 @@ import SubmitPage from '../components/SubmitPage/SubmitPage';
 import NavBar from '../components/NavBar/NavBar';
 import SignUpPage from '../components/SignUpPage/SignUpPage';
 import LogInPage from '../components/LogInPage/LogInPage';
+import ResetPage from '../components/ResetPage/ResetPage';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -22,6 +23,7 @@ const AppRouter = () => (
         <Route path="/submit" component={SubmitPage} exact />
         <Route path="/login" component={LogInPage} exact />
         <Route path="/signup" component={SignUpPage} exact />
+        <Route path="/reset" component={ResetPage} exact />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

@@ -1,5 +1,6 @@
 const initState = {
   authError: null,
+  resetPasswordSuccessMessage: null,
 };
 
 const authReducer = (state = initState, action) => {
@@ -29,7 +30,11 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: action.err.message,
       };
-
+    case 'RESET_PASSWORD_SUCCESS':
+      return {
+        ...state,
+        resetPasswordSuccessMessage: 'Success',
+      };
     default:
       return state;
   }
