@@ -5,7 +5,7 @@ import { logIn as logInAction } from '../../store/actions/authActions';
 import './LogInPage.scss';
 
 export const LogInPage = (props) => {
-  const { authError, darkMode, isSignedIn, signIn } = props;
+  const { authError, isSignedIn, signIn } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,8 +16,6 @@ export const LogInPage = (props) => {
     signIn({ email, password });
   };
 
-  const inputClassName = `form-control${darkMode ? ' bg-dark text-white' : ''}`;
-
   return (
     <div className="auth-wrapper">
       <form onSubmit={onSubmit}>
@@ -25,7 +23,7 @@ export const LogInPage = (props) => {
           <label htmlFor="email">Email address</label>
           <input
             type="email"
-            className={inputClassName}
+            className="form-control"
             id="email"
             aria-describedby="emailHelp"
             placeholder="Enter email"
@@ -37,7 +35,7 @@ export const LogInPage = (props) => {
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            className={inputClassName}
+            className="form-control"
             id="password"
             placeholder="Password"
             value={password}

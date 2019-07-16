@@ -5,7 +5,7 @@ import { signUp as signUpAction } from '../../store/actions/authActions';
 import './SignUpPage.scss';
 
 export const SignUpPage = (props) => {
-  const { authError, darkMode, isLoggedIn, signUp } = props;
+  const { authError, isLoggedIn, signUp } = props;
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -44,8 +44,6 @@ export const SignUpPage = (props) => {
     signUp({ username, email, password, imageFile });
   };
 
-  const inputClassName = `form-control${darkMode ? ' bg-dark text-white' : ''}`;
-
   return (
     <div className="auth-wrapper">
       <form onSubmit={onSubmit}>
@@ -53,7 +51,7 @@ export const SignUpPage = (props) => {
           <label htmlFor="username">Username</label>
           <input
             type="text"
-            className={inputClassName}
+            className="form-control"
             id="username"
             aria-describedby="usernameHelp"
             placeholder="Enter username"
@@ -65,7 +63,7 @@ export const SignUpPage = (props) => {
           <label htmlFor="email">Email address</label>
           <input
             type="email"
-            className={inputClassName}
+            className="form-control"
             id="email"
             aria-describedby="emailHelp"
             placeholder="Enter email"
@@ -77,7 +75,7 @@ export const SignUpPage = (props) => {
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            className={inputClassName}
+            className="form-control"
             id="password"
             placeholder="Password"
             value={password}
@@ -94,7 +92,7 @@ export const SignUpPage = (props) => {
           Sign Up
         </button>
         {error && <div className="mt-2 alert alert-danger">{error}</div>}
-        {authError && <div className="mt-2 alert alert-danger">{authError}</div>}
+        {!error && authError && <div className="mt-2 alert alert-danger">{authError}</div>}
       </form>
     </div>
   );
