@@ -20,6 +20,9 @@ const NavBar = (props) => {
 
   const renderSubmitSignOutButton = (
     <div className="d-flex flex-row">
+	  <Link to="/messages" className="btn btn-outline-primary mr-2">
+        Messages
+      </Link>
       <Link to="/submit" className="btn btn-outline-primary mr-2">
         Submit
       </Link>
