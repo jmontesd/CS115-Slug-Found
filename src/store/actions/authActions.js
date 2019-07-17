@@ -57,7 +57,6 @@ export const updateProfileImage = (imageFile) => (dispatch, getState, { getFires
   const { uid } = getState().firebase.auth;
   const firestore = getFirestore();
   uploadImage(imageFile, (id, imageURL) => {
-    console.log(firestore.collection('users').doc(uid));
     firestore
       .collection('users')
       .doc(uid)

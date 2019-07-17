@@ -34,23 +34,16 @@ const ProfilePage = (props) => {
             posts
               .slice()
               .sort((a, b) => b.createdAt - a.createdAt)
-              .map((post) => (
-                <div>
-                  <Item key={post.id} post={post} />
-                </div>
-              ))}
+              .map((post) => <Item key={post.id} post={post} />)}
         </div>
         <div className="col-4">
           <div className="profile-wrapper">
             <img src={profilePictureURL} className="img-card" alt="Profile" />
             {isUserProfileTheUserLoggedIn && (
-              <>
-                <div htmlFor="file">Profile Picture</div>
-                <label className="btn btn-outline-info cursor-pointer">
-                  <input className="d-none" type="file" onChange={handleFileChange} />
-                  Change Profile Picture
-                </label>
-              </>
+              <label className="btn btn-outline-info cursor-pointer d-block mt-2 ">
+                <input className="d-none" type="file" onChange={handleFileChange} />
+                Change Profile Picture
+              </label>
             )}
             <div className="card-title">{username}</div>
             <Link to="/messages" className="btn btn-warning full-width">
