@@ -3,6 +3,7 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { Item } from './Item';
 
+// needed for shallow rendering
 configure({ adapter: new Adapter() });
 
 describe('<Item />', () => {

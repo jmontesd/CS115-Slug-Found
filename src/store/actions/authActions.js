@@ -81,5 +81,7 @@ export const resetPassword = (email) => (dispatch, getState, { getFirebase }) =>
     .then(() => {
       dispatch({ type: 'RESET_PASSWORD_SUCCESS' });
     })
-    .catch(() => {});
+    .catch((err) => {
+      dispatch({ type: 'RESET_PASSWORD_ERROR', err });
+    });
 };

@@ -6,7 +6,7 @@ import './ResetPage.scss';
 
 export const ResetPage = (props) => {
   // these are the props need for this component
-  const { authError, isLoggedIn, resetPassword, resetPasswordSuccessMessage } = props;
+  const { resetPasswordError, isLoggedIn, resetPassword, resetPasswordSuccessMessage } = props;
   // vars needed for this component
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
@@ -56,7 +56,9 @@ export const ResetPage = (props) => {
         {error && <div className="mt-2 alert alert-danger">{error}</div>}
         {/* if firebase says there is an error, render that to the screen only if
         there already isn't an error on the screen */}
-        {!error && authError && <div className="mt-2 alert alert-danger">{authError}</div>}
+        {!error && resetPasswordError && (
+          <div className="mt-2 alert alert-danger">{resetPasswordError}</div>
+        )}
         {/* if reseting password was a success, then show success message */}
         {resetPasswordSuccessMessage && (
           <div className="mt-2 alert alert-success">{resetPasswordSuccessMessage}</div>
@@ -70,7 +72,7 @@ export const ResetPage = (props) => {
 // and check if reseting password was a success
 // and pass them as props to the component
 const mapStateToProps = (state) => ({
-  authError: state.auth.authError,
+  resetPasswordError: state.auth.resetPasswordError,
   isLoggedIn: state.firebase.auth.uid,
   resetPasswordSuccessMessage: state.auth.resetPasswordSuccessMessage,
 });

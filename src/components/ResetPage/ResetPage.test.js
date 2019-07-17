@@ -3,6 +3,7 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { ResetPage } from './ResetPage';
 
+// needed for shallow rendering
 configure({ adapter: new Adapter() });
 
 describe('<ResetPage />', () => {
@@ -33,5 +34,12 @@ describe('<ResetPage />', () => {
     wrapper.find('form').simulate('submit', { preventDefault() {} });
     // we make sure our mock function is called
     expect(resetPassword).toHaveBeenCalledWith(email);
+  });
+
+  it('should render resetPasswordError', () => {
+    // create component with error
+    const wrapper = shallow(<ResetPage resetPasswordError="error" />);
+    // check to see if error found
+    expect(wrapper.find('.alert-danger')).toHaveLength(1);
   });
 });

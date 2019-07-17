@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import './SubmitPage.scss';
 import { connect } from 'react-redux';
-import { uploadImage } from '../../firebase/firebase';
+import { uploadImage as uploadImageAction } from '../../firebase/firebase';
 import { addPost as addPostAction } from '../../store/actions/postActions';
 
 export const SubmitPage = (props) => {
   // these are the props need for this component
-  const { addPost, isLoggedIn } = props;
+  const { addPost, isLoggedIn, uploadImage } = props;
   // vars needed for this component
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -18,7 +18,7 @@ export const SubmitPage = (props) => {
   if (!isLoggedIn) {
     return <Redirect to="/login" />;
   }
-  // once item submitted, redirect use
+  // once item submitted, redirect user
   if (redirect) {
     return <Redirect to={`/item/${redirect}`} />;
   }
@@ -106,6 +106,7 @@ const mapStateToProps = (state) => ({
 // get the addPost function which will addPost to firebase
 const mapDispatchToProps = (dispatch) => ({
   addPost: (post) => dispatch(addPostAction(post)),
+  uploadImage: uploadImageAction,
 });
 // export this component with the neccessary data
 export default connect(

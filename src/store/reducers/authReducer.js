@@ -2,6 +2,7 @@
 const initState = {
   loginError: null,
   signUpError: null,
+  resetPasswordError: null,
   resetPasswordSuccessMessage: null,
 };
 // messages to show user in the event of error or success
@@ -40,6 +41,13 @@ const authReducer = (state = initState, action) => {
         ...state,
         // lets the user know the password reset was successful
         resetPasswordSuccessMessage: 'Success',
+        resetPasswordError: null,
+      };
+    case 'RESET_PASSWORD_ERROR':
+      return {
+        ...state,
+        // lets the user know the password reset was successful
+        resetPasswordError: action.err.message,
       };
     default:
       return state;
