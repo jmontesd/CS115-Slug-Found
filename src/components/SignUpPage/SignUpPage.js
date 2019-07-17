@@ -5,7 +5,7 @@ import { signUp as signUpAction } from '../../store/actions/authActions';
 import './SignUpPage.scss';
 
 export const SignUpPage = (props) => {
-  const { authError, isLoggedIn, signUp } = props;
+  const { signUpError, isLoggedIn, signUp } = props;
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,7 +14,7 @@ export const SignUpPage = (props) => {
 
   if (isLoggedIn) return <Redirect to="/" />;
 
-  const handleChange = (e) => {
+  const handleFileChange = (e) => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       setImageFile(image);
@@ -88,21 +88,25 @@ export const SignUpPage = (props) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="file">Profile Picture</label>
-          <input className="d-block" to="file" type="file" onChange={handleChange} />
+          <div htmlFor="file">Profile Picture</div>
+          <label className="btn btn-outline-info cursor-pointer">
+            <input className="d-none" type="file" onChange={handleFileChange} />
+            Choose File
+          </label>
+          <span className="ml-2">{imageFile && imageFile.name}</span>
         </div>
         <button type="submit" className="btn btn-primary full-width">
           Sign Up
         </button>
         {error && <div className="mt-2 alert alert-danger">{error}</div>}
-        {!error && authError && <div className="mt-2 alert alert-danger">{authError}</div>}
+        {!error && signUpError && <div className="mt-2 alert alert-danger">{signUpError}</div>}
       </form>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  authError: state.auth.authError,
+  signUpError: state.auth.signUpError,
   isLoggedIn: state.firebase.auth.uid,
 });
 

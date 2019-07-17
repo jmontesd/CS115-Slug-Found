@@ -5,11 +5,26 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import Item from '../Item/Item';
+import { updateProfileImage as updateProfileImageAction } from '../../store/actions/authActions';
 
 const ProfilePage = (props) => {
-  const { username, posts, isLoggedIn, profilePictureURL } = props;
+  const {
+    username,
+    posts,
+    isLoggedIn,
+    profilePictureURL,
+    isUserProfileTheUserLoggedIn,
+    updateProfileImage,
+  } = props;
 
   if (!isLoggedIn) return <Redirect to="/login" />;
+
+  const handleFileChange = (e) => {
+    if (e.target.files[0]) {
+      const imageFile = e.target.files[0];
+      updateProfileImage(imageFile);
+    }
+  };
 
   return (
     <div className="container">
@@ -27,7 +42,16 @@ const ProfilePage = (props) => {
         </div>
         <div className="col-4">
           <div className="profile-wrapper">
-            <img src={profilePictureURL} className="img-card" alt="Profile Picutre" />
+            <img src={profilePictureURL} className="img-card" alt="Profile" />
+            {isUserProfileTheUserLoggedIn && (
+              <>
+                <div htmlFor="file">Profile Picture</div>
+                <label className="btn btn-outline-info cursor-pointer">
+                  <input className="d-none" type="file" onChange={handleFileChange} />
+                  Change Profile Picture
+                </label>
+              </>
+            )}
             <div className="card-title">{username}</div>
             <Link to="/messages" className="btn btn-warning full-width">
               Message
@@ -46,15 +70,24 @@ const mapStateToProps = (state, props) => {
   const username = user && user.username;
   const profilePictureURL = user && user.profilePictureURL;
   const posts = allPosts && allPosts.filter((i) => i.user.id === id);
+  const isUserProfileTheUserLoggedIn = id === state.firebase.auth.uid;
   return {
-    profilePictureURL,
-    username,
-    posts,
     isLoggedIn: state.firebase.auth.uid,
+    isUserProfileTheUserLoggedIn,
+    profilePictureURL,
+    posts,
+    username,
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  updateProfileImage: (update) => dispatch(updateProfileImageAction(update)),
+});
+
 export default compose(
-  connect(mapStateToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
   firestoreConnect([{ collection: 'posts' }, { collection: 'users' }]),
 )(ProfilePage);

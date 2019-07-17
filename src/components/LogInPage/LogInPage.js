@@ -5,7 +5,7 @@ import { logIn as logInAction } from '../../store/actions/authActions';
 import './LogInPage.scss';
 
 export const LogInPage = (props) => {
-  const { authError, isSignedIn, signIn } = props;
+  const { loginError, isSignedIn, signIn } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -65,14 +65,14 @@ export const LogInPage = (props) => {
           Sign In
         </button>
         {error && <div className="mt-2 alert alert-danger">{error}</div>}
-        {!error && authError && <div className="mt-2 alert alert-danger">{authError}</div>}
+        {!error && loginError && <div className="mt-2 alert alert-danger">{loginError}</div>}
       </form>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  authError: state.auth.authError,
+  loginError: state.auth.loginError,
   isSignedIn: state.firebase.auth.uid,
 });
 

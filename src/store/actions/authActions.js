@@ -53,6 +53,20 @@ export const signUp = (newUser) => (dispatch, getState, { getFirebase, getFirest
     });
 };
 
+export const updateProfileImage = (imageFile) => (dispatch, getState, { getFirestore }) => {
+  const { uid } = getState().firebase.auth;
+  const firestore = getFirestore();
+  uploadImage(imageFile, (id, imageURL) => {
+    console.log(firestore.collection('users').doc(uid));
+    firestore
+      .collection('users')
+      .doc(uid)
+      .update({
+        profilePictureURL: imageURL,
+      });
+  });
+};
+
 export const resetPassword = ({ email }) => (dispatch, getState, { getFirebase }) => {
   getFirebase()
     .resetPassword(email)

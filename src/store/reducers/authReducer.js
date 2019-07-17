@@ -1,5 +1,6 @@
 const initState = {
-  authError: null,
+  loginError: null,
+  signUpError: null,
   resetPasswordSuccessMessage: null,
 };
 
@@ -8,12 +9,12 @@ const authReducer = (state = initState, action) => {
     case 'LOGIN_ERROR':
       return {
         ...state,
-        authError: 'Login failed',
+        loginError: 'Login failed',
       };
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        authError: null,
+        loginError: null,
       };
     case 'SIGNOUT_SUCCESS':
       return state;
@@ -22,13 +23,13 @@ const authReducer = (state = initState, action) => {
     case 'SIGNUP_SUCCESS':
       return {
         ...state,
-        authError: null,
+        signUpError: null,
       };
 
     case 'SIGNUP_ERROR':
       return {
         ...state,
-        authError: action.err.message,
+        signUpError: action.err.message,
       };
     case 'RESET_PASSWORD_SUCCESS':
       return {
