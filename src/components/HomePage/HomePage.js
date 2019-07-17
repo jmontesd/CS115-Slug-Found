@@ -19,7 +19,7 @@ const HomePage = (props) => {
         posts
           .slice()
           .sort((a, b) => b.createdAt - a.createdAt)
-          .map((post) => <div className="homePost"><Item key={post.id} post={post} /> </div>)
+          .map((post) => <div className="homePost"> <Item key={post.id} post={post} /> </div>)
       }
     </div>
 

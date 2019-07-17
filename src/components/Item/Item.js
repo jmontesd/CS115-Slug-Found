@@ -6,7 +6,7 @@ import moment from 'moment';
 const Item = (props) => {
   const { post } = props;
   return (
-    <div className="container">
+    <div className="container" id="post">
       <div className="postText">
           <Link to={`/item/${post.id}`}>{post.title}</Link>
       </div>

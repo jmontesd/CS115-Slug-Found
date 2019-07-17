@@ -12,6 +12,16 @@
 
 }
 
+img  {
+  height: 85%;
+  width: 55%;
+  float:right;
+  top: 18px;
+  right: 8px;
+  position: absolute;
+  border-radius: 10px;
+}
+
 .divider{
   width:5px;
   height:auto;
@@ -25,6 +35,22 @@
 #deleteBtn{
   top: 205px;
   left: 30px;
+}
+
+#post{
+  background-color: white;
+  border-radius: 25px;
+  border: 4px solid clear;
+  box-shadow: 5px 13px 8px #888888;
+  border-color: white;
+  border-spacing: 15px 50px;
+  border-collapse: separate;
+  padding-top: 20px;
+  width: 600px;
+  height: 250px;
+  display: block;
+  position:relative;
+  left:300px;
 }
 
 // #messageBtn {
