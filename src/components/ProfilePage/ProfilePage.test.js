@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ProfilePage from './ProfilePage';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { ProfilePage } from './ProfilePage';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<ProfilePage />, div);
-  ReactDOM.unmountComponentAtNode(div);
+configure({ adapter: new Adapter() });
+
+describe('<ProfilePage />', () => {
+  it('should ', () => {
+    const wrapper = shallow(<ProfilePage />);
+  });
 });

@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import NotFoundPage from './NotFoundPage';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { NotFoundPage } from './NotFoundPage';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<NotFoundPage />, div);
-  ReactDOM.unmountComponentAtNode(div);
+configure({ adapter: new Adapter() });
+
+describe('<NotFoundPage />', () => {
+  it('should ', () => {
+    const wrapper = shallow(<NotFoundPage />);
+  });
 });

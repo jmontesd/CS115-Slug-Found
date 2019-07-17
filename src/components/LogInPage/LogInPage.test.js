@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import LogInPage from './LogInPage';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { LogInPage } from './LogInPage';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<LogInPage />, div);
-  ReactDOM.unmountComponentAtNode(div);
+configure({ adapter: new Adapter() });
+
+describe('<LogInPage />', () => {
+  it('should ', () => {
+    const wrapper = shallow(<LogInPage />);
+  });
 });

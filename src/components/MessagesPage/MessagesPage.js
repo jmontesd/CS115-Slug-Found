@@ -3,7 +3,7 @@ import './MessagesPage.scss';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-const MessagesPage = (props) => {
+export const MessagesPage = (props) => {
   const { isLoggedIn } = props;
 
   if (!isLoggedIn) return <Redirect to="/login" />;

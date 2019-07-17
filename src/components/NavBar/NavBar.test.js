@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import NavBar from './NavBar';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { NavBar } from './NavBar';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<NavBar />, div);
-  ReactDOM.unmountComponentAtNode(div);
+configure({ adapter: new Adapter() });
+
+describe('<NavBar />', () => {
+  it('should ', () => {
+    const wrapper = shallow(<NavBar />);
+  });
 });

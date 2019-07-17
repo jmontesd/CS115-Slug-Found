@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import SignUpPage from './SignUpPage';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { SignUpPage } from './SignUpPage';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<SignUpPage />, div);
-  ReactDOM.unmountComponentAtNode(div);
+configure({ adapter: new Adapter() });
+
+describe('<SignUpPage />', () => {
+  it('should ', () => {
+    const wrapper = shallow(<SignUpPage />);
+  });
 });

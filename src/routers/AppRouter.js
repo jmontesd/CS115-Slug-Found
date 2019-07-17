@@ -11,12 +11,14 @@ import NavBar from '../components/NavBar/NavBar';
 import SignUpPage from '../components/SignUpPage/SignUpPage';
 import LogInPage from '../components/LogInPage/LogInPage';
 import ResetPage from '../components/ResetPage/ResetPage';
-
+// lets users navigate website
 const AppRouter = () => (
   <BrowserRouter>
     <div>
+      {/* navbar always shows up */}
       <NavBar />
       <Switch>
+        {/* depending on path, render that component */}
         <Route path="/" component={HomePage} exact />
         <Route path="/item/:id" component={ItemPage} exact />
         <Route path="/messages" component={MessagesPage} exact />

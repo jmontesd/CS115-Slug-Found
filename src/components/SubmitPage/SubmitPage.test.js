@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import SubmitPage from './SubmitPage';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { SubmitPage } from './SubmitPage';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<SubmitPage />, div);
-  ReactDOM.unmountComponentAtNode(div);
+configure({ adapter: new Adapter() });
+
+describe('<SubmitPage />', () => {
+  it('should ', () => {
+    const wrapper = shallow(<SubmitPage />);
+  });
 });
