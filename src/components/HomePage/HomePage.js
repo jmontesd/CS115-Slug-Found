@@ -7,6 +7,8 @@ import { Redirect } from 'react-router-dom';
 import Item from '../Item/Item';
 
 const HomePage = (props) => {
+ 
+
   const { posts, isLoggedIn } = props;
 
   if (!isLoggedIn) return <Redirect to="/login" />;
@@ -17,12 +19,16 @@ const HomePage = (props) => {
           <li>
             <div class="user-view">
               <div class="background">
-                <img src="https://bodhispiritualcenter.org/wp-content/uploads/2014/10/redwoods-looking-up-650x487.jpg" class="centered"/>
+                <img src="https://bodhispiritualcenter.org/wp-content/uploads/2014/10/redwoods-looking-up-650x487.jpg"
+                 class="centered"
+                  alt="" 
+                  />
               </div>
               <a href="#user">
                 <img
                   src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto/gigs/5536321/original/stickfigure/make-a-hand-drawn-stick-figure-portrait.png"
                   class="circle"
+                  alt=""
                 />
               </a>
               <a href="#name">
@@ -36,12 +42,14 @@ const HomePage = (props) => {
                 <span class="center-align name white"> jmontesd@ucsc.edu</span>
               </a>
             </div>
-            <div className="div"></div>
           </li>
           <ul class="collapsible">
             <li>
               <div class="collapsible-header">
-                <i class="material-icons">home</i>First
+                <i class="material-icons">home</i>HomePage
+                <i class="material-icons right" style={{ marginRight: -10 }}>
+                  arrow_drop_down
+                </i>
               </div>
               <div class="collapsible-body">
                 <p>Found Items</p>
@@ -50,10 +58,14 @@ const HomePage = (props) => {
             </li>
             <li>
               <div class="collapsible-header">
-                <i class="material-icons">person</i>Second
+                <i class="material-icons">person</i>My Profile
+                <i class="material-icons right" style={{ marginRight: -10 }}>
+                  arrow_drop_down
+                </i>
               </div>
               <div class="collapsible-body">
-                <span>Lorem ipsum dolor sit amet.</span>
+                <p>Posts</p>
+                <p>Messages</p>
               </div>
             </li>
           </ul>
