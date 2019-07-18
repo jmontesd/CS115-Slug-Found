@@ -13,11 +13,11 @@ const MessagesPage = (props) => {
   <div className="to">
     To:
   </div>
-  <input type="text" id="usrName" value="e-mail"></input>
+  <textarea name="receiver" id="usrname" rows="1" cols="30"></textarea>
   <div className="to">
     Subject:
   </div>
-  <input type="text" id="subjct" value=""></input>
+  <textarea name="subject" rows="1" cols="40"></textarea>
   <div className="to">
     Message:
   </div>
@@ -26,6 +26,7 @@ const MessagesPage = (props) => {
     <input type="submit" value="Send"></input>
   </div>
 </div>
+
 
 };
 const mapStateToProps = (state) => {
