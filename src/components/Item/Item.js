@@ -16,9 +16,6 @@ export const Item = (props) => {
       <Link to={`/item/${post.id}`}>
         <img className="item-image" alt="item" src={post.imageURL} />
       </Link>
-      <button type="button" className="button" id="deleteBtn">
-        Delete
-      </button>
       {/* do only for personal posts */}
       <div className="divider" />
       {/* <button className="button" id="messageBtn"> Message </button> */

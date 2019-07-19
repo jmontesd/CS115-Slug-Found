@@ -1,5 +1,4 @@
 // action to add post
-// eslint-disable-next-line import/prefer-default-export
 export const addPost = (post) => (dispatch, getState, { getFirestore }) => {
   const firestore = getFirestore();
   // gets the user id of the user currently logged in
@@ -13,4 +12,8 @@ export const addPost = (post) => (dispatch, getState, { getFirestore }) => {
       user: { name: getState().firebase.profile.username, id: uid },
     });
   }
+};
+export const deletePost = (postId, firebasePostId) => (dispatch, getState, { getFirestore }) => {
+  getFirestore().delete({ collection: 'posts', doc: postId });
+  getFirestore().delete({ collection: 'posts', doc: firebasePostId });
 };

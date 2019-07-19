@@ -7,7 +7,6 @@ import { Redirect } from 'react-router-dom';
 import M from 'materialize-css';
 import Item from '../Item/Item';
 
-
 export class HomePage extends React.Component {
   // get a reference to the element after the component has mounted
   componentDidMount() {
@@ -82,7 +81,7 @@ export class HomePage extends React.Component {
           </ul>
         </ul>
 
-        <div className="container" id="body">
+        <div className="HomePage-container" id="body">
           {posts &&
             posts
               .slice()
@@ -107,4 +106,3 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([{ collection: 'posts' }]),
 )(HomePage);
-
