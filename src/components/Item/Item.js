@@ -10,19 +10,21 @@ export const Item = (props) => {
   return (
     <div className="container" id="post">
       <div className="postText">
-          <Link to={`/item/${post.id}`}>{post.title}</Link>
+        <Link to={`/item/${post.id}`}>{post.title}</Link>
       </div>
       <div className=".text"> {`${moment(post.createdAt).calendar()}`} </div>
       <Link to={`/item/${post.id}`}>
-        <img alt="item" src={post.imageURL} />
+        <img className="item-image" alt="item" src={post.imageURL} />
       </Link>
-      <button className="button" id="deleteBtn"> Delete </button> 
+      <button type="button" className="button" id="deleteBtn">
+        Delete
+      </button>
       {/* do only for personal posts */}
-      <div className="divider"/>
-      {/* <button className="button" id="messageBtn"> Message </button> */ /*add only for item page*/}
-      
+      <div className="divider" />
+      {/* <button className="button" id="messageBtn"> Message </button> */
+      /* add only for item page */}
     </div>
   );
 };
 
-export default Item; 
+export default Item;
