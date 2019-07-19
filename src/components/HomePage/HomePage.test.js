@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import HomePage from './HomePage';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { HomePage } from './HomePage';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<HomePage />, div);
-  ReactDOM.unmountComponentAtNode(div);
+// needed for shallow rendering
+configure({ adapter: new Adapter() });
+
+describe('<HomePage />', () => {
+  it('should ', () => {
+    const wrapper = shallow(<HomePage isLoggedIn />);
+  });
 });

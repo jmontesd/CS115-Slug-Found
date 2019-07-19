@@ -1,26 +1,21 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
-import { logIn as logInAction } from '../../store/actions/authActions';
-import './LogInPage.scss';
+import { Redirect } from 'react-router-dom';
+import { resetPassword as resetPasswordAction } from '../../store/actions/authActions';
+import './ResetPage.scss';
 
-export const LogInPage = (props) => {
+export const ResetPage = (props) => {
   // these are the props need for this component
-  const { loginError, isLoggedIn, logIn } = props;
+  const { resetPasswordError, isLoggedIn, resetPassword, resetPasswordSuccessMessage } = props;
   // vars needed for this component
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   // redirect user to home page if they are already logged in
   if (isLoggedIn) return <Redirect to="/" />;
-  // make sure user submitted valid data
-  const validateForm = () => {
+  // make sure user submitted valid email
+  const validateEmail = () => {
     if (!email) {
-      setError('Please enter an email');
-      return false;
-    }
-    if (!password) {
-      setError('Please enter a password');
+      setError('Please enter email');
       return false;
     }
     return true;
@@ -30,10 +25,10 @@ export const LogInPage = (props) => {
     // prevent the page from reloading
     e.preventDefault();
     // only submits if user submits valid data
-    if (validateForm()) {
+    if (validateEmail()) {
       setError('');
-      // log in user
-      logIn({ email, password });
+      // reset password for that email
+      resetPassword(email);
     }
   };
   // render this to the screen
@@ -54,47 +49,40 @@ export const LogInPage = (props) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            placeholder="Password"
-            value={password}
-            // set the password var if user changes
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <Link className="mb-2 d-block" to="/reset">
-          Reset Password
-        </Link>
         <button type="submit" className="btn btn-primary full-width">
-          Sign In
+          Reset Password
         </button>
         {/* if there is an error, render it to the screen */}
         {error && <div className="mt-2 alert alert-danger">{error}</div>}
         {/* if firebase says there is an error, render that to the screen only if
         there already isn't an error on the screen */}
-        {!error && loginError && <div className="mt-2 alert alert-danger">{loginError}</div>}
+        {!error && resetPasswordError && (
+          <div className="mt-2 alert alert-danger">{resetPasswordError}</div>
+        )}
+        {/* if reseting password was a success, then show success message */}
+        {resetPasswordSuccessMessage && (
+          <div className="mt-2 alert alert-success">{resetPasswordSuccessMessage}</div>
+        )}
       </form>
     </div>
   );
 };
 // check to see if user is logged in
-// and check if firebase gave an error when logging in
+// and check if firebase gave an error when reseting password
+// and check if reseting password was a success
 // and pass them as props to the component
 const mapStateToProps = (state) => ({
-  loginError: state.auth.loginError,
+  resetPasswordError: state.auth.resetPasswordError,
   isLoggedIn: state.firebase.auth.uid,
+  resetPasswordSuccessMessage: state.auth.resetPasswordSuccessMessage,
 });
 // get the logIn function which will sign up the user and send
 // info to firebase
 const mapDispatchToProps = (dispatch) => ({
-  logIn: (creds) => dispatch(logInAction(creds)),
+  resetPassword: (email) => dispatch(resetPasswordAction(email)),
 });
 // export this component with the neccessary data
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LogInPage);
+)(ResetPage);

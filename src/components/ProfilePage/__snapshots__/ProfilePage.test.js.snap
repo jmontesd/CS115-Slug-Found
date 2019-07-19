@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfilePage /> should render ProfilePage properly 1`] = `ShallowWrapper {}`;

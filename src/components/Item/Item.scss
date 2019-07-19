@@ -22,6 +22,10 @@ img  {
   border-radius: 10px;
 }
 
+.row{
+  row-gap: 20px;
+}
+
 .divider{
   width:5px;
   height:auto;
@@ -50,10 +54,4 @@ img  {
   height: 250px;
   display: block;
   position:relative;
-  //left:300px;
 }
-
-// #messageBtn {
-//   top: 205px;
-//   left: 30px;
-// }

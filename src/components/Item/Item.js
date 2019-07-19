@@ -3,8 +3,10 @@ import './Item.scss';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-const Item = (props) => {
+export const Item = (props) => {
+  // get the post from props
   const { post } = props;
+  // render this as html
   return (
     <div className="container" id="post">
       <div className="postText">

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavBar /> should NavBar properly when logged in 1`] = `ShallowWrapper {}`;
+
+exports[`<NavBar /> should NavBar properly when not logged in 1`] = `ShallowWrapper {}`;

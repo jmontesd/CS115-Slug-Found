@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import MessagesPage from './MessagesPage';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { MessagesPage } from './MessagesPage';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<MessagesPage />, div);
-  ReactDOM.unmountComponentAtNode(div);
+// needed for shallow rendering
+configure({ adapter: new Adapter() });
+
+describe('<MessagesPage />', () => {
+  it('should ', () => {
+    const wrapper = shallow(<MessagesPage isLoggedIn />);
+  });
 });

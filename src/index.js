@@ -17,6 +17,7 @@ const App = (
     <AppRouter />
   </Provider>
 );
+// once firebase ready, then we render to the screen
 store.firebaseAuthIsReady.then(() => {
   ReactDOM.render(App, document.getElementById('root'));
 });
