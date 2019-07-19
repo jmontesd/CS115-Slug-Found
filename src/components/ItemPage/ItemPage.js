@@ -17,15 +17,18 @@ export const ItemPage = (props) => {
       {/* if there is a post, render it */}
       {post && (
         <div className="container">
-          <div>
+          <div className="ItemPage-Title">{post.title}</div>
+          <div id="ItemPage-background">
+          <div id="ItemPage-person">
             {'Posted By: '}
             <Link to={`/profile/${post.user.id}`}>{post.user.name}</Link>
           </div>
           {/* formats date */}
-          <div>{`${moment(post.createdAt).calendar()}`}</div>
-          <div>{post.title}</div>
-          <div>{post.description}</div>
-          <img alt="item" src={post.imageURL} />
+          <div id="ItemPage-post">{post.description}</div>
+          <img alt="item" src={post.imageURL} id="ItemPage-imageSize"/> 
+          <div>Location:</div>
+         <div id="ItemPage-timeDate">{`${moment(post.createdAt).calendar()}`}</div>
+        </div>
         </div>
       )}
     </>
