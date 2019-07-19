@@ -107,3 +107,4 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([{ collection: 'posts' }]),
 )(HomePage);
+
