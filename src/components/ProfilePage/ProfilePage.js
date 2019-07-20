@@ -52,9 +52,11 @@ export const ProfilePage = (props) => {
               </label>
             )}
             <div className="card-title">{username}</div>
-            <Link to={`/messages/message/${id}`} className="btn btn-warning full-width">
-              Message
-            </Link>
+            {!isUserProfileTheUserLoggedIn && (
+              <Link to={`/messages/message/${id}`} className="btn btn-warning full-width">
+                Message
+              </Link>
+            )}
           </div>
         </div>
       </div>

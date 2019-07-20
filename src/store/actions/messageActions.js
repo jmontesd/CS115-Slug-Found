@@ -34,7 +34,7 @@ export const updateMessages = (toId, message, messageGroup) => (
   } else {
     // find docId to update messages
     const allMessageGroups = state.firestore.data.messages;
-    const docId = Object.keys().find(
+    const docId = Object.keys(allMessageGroups).find(
       (key) =>
         allMessageGroups[key] &&
         allMessageGroups[key].smallerId === smallerId &&
