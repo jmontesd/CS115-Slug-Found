@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import M from 'materialize-css';
 import Item from '../Item/Item';
+import SearchBox from '../SearchBox/SearchBox';
 
 
 export class HomePage extends React.Component {
@@ -13,9 +14,18 @@ export class HomePage extends React.Component {
   componentDidMount() {
     M.Sidenav.init(this.sidenav);
     M.Collapsible.init(this.collapsible);
+    
   }
+  state = {
+    searchItem:''
+  };
 
+  handleInput = (e) => {
+    console.log(e.target.value); 
+    this.setState({ searchItem: e.target.value})
+  }
   render() {
+
     const { posts, isLoggedIn } = this.props;
 
     if (!isLoggedIn) return <Redirect to="/login" />;
@@ -81,13 +91,20 @@ export class HomePage extends React.Component {
             </li>
           </ul>
         </ul>
-
+        
         <div className="container" id="body">
+        
+          <SearchBox handleInput={this.handleInput}/>
           {posts &&
             posts
               .slice()
               .sort((a, b) => b.createdAt - a.createdAt)
+              .filter((post) =>  {
+                return post.title.toLowerCase().includes(this.state.searchItem.toLowerCase());
+              })
               .map((post) => <Item key={post.id} post={post} />)}
+              
+              
         </div>
       </div>
     );
