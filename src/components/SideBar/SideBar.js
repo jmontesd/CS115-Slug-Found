@@ -1,27 +1,26 @@
 import React from 'react';
-import './HomePage.scss';
+import './SideBar.scss';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import M from 'materialize-css';
-import Item from '../Item/Item';
 
-export class HomePage extends React.Component {
+export class SideBar extends React.Component{
   // get a reference to the element after the component has mounted
-  // componentDidMount() {
-  //   M.Sidenav.init(this.sidenav);
-  //   M.Collapsible.init(this.collapsible);
-  // }
+  componentDidMount() {
+    M.Sidenav.init(this.sidenav);
+    M.Collapsible.init(this.collapsible);
+  }
 
   render() {
-    const { posts, isLoggedIn } = this.props;
+    const { isLoggedIn } = this.props;
 
     if (!isLoggedIn) return <Redirect to="/login" />;
 
     return (
-      // <div className="container section">
-        /* <ul
+      <div className="container section">
+        <ul
           className="sidenav sidenav-fixed"
           id="menu-side"
           ref={(sidenav) => {
@@ -45,7 +44,7 @@ export class HomePage extends React.Component {
                 />
               </a>
               <a href="#name">
-                {/* <span class="name white"> Jacqueline Montes</span> 
+                {/* <span class="name white"> Jacqueline Montes</span> */}
                 <span className="center-align name white">Jacqueline Montes</span>
                 <p />
               </a>
@@ -75,35 +74,21 @@ export class HomePage extends React.Component {
                 <i className="material-icons">person</i>Second
               </div>
               <div className="collapsible-body">
-                {/* <p><Link to= {user/isLoggedIn}> My Profile </Link></p> 
+                {/* <p><Link to= {user/isLoggedIn}> My Profile </Link></p> */}
                 <p><Link to= "/messages"> My Messages </Link></p>
               </div>
             </li>
           </ul>
-        // </ul> */
-        // <>
-        <div className="container" id="body">
-          {posts &&
-            posts
-              .slice()
-              .sort((a, b) => b.createdAt - a.createdAt)
-              .map((post) => <Item key={post.id} post={post} />)}
-        </div>
+        </ul>
+      </div>
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  // get all posts from firebase
-  const { posts } = state.firestore.ordered;
-  return {
-    posts,
-    isLoggedIn: state.firebase.auth.uid,
-  };
-};
 // export this component with the neccessary data
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.firebase.auth.uid,
+  });
+
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{ collection: 'posts' }]),
-)(HomePage);
-
+)(SideBar);
