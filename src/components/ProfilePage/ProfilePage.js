@@ -10,6 +10,7 @@ import { updateProfileImage as updateProfileImageAction } from '../../store/acti
 export const ProfilePage = (props) => {
   // these are the props need for this component
   const {
+    id,
     username,
     posts,
     isLoggedIn,
@@ -51,7 +52,7 @@ export const ProfilePage = (props) => {
               </label>
             )}
             <div className="card-title">{username}</div>
-            <Link to="/messages" className="btn btn-warning full-width">
+            <Link to={`/messages/message/${id}`} className="btn btn-warning full-width">
               Message
             </Link>
           </div>
@@ -77,6 +78,7 @@ const mapStateToProps = (state, props) => {
   // check if user profile is the user logged in
   const isUserProfileTheUserLoggedIn = id === state.firebase.auth.uid;
   return {
+    id,
     isLoggedIn: state.firebase.auth.uid,
     isUserProfileTheUserLoggedIn,
     profilePictureURL,
