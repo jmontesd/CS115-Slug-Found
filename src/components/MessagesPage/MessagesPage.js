@@ -9,20 +9,8 @@ export const MessagesPage = (props) => {
   if (!isLoggedIn) return <Redirect to="/login" />;
 
   return (
-    <div className="mailbox">
-      <div className="nav">
-        <div className="btngroup">
-          <form id="btnn" action="/messages/compose">
-            <button id="but" type="submit" name="submit">
-              compose
-            </button>
-          </form>
-          <button type="button">inbox</button>
-          <button type="button">sent</button>
-        </div>
-      </div>
+    <div className="container">
       <div className="messages">
-        <input className="input-search" placeholder="search" />
         <div className="message">
           <span className="sender">Steve</span>
           <span className="date">today</span>
@@ -62,6 +50,7 @@ export const MessagesPage = (props) => {
     </div>
   );
 };
+
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.firebase.auth.uid,

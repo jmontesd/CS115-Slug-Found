@@ -8,7 +8,6 @@ import M from 'materialize-css';
 import Item from '../Item/Item';
 import SearchBox from '../SearchBox/SearchBox';
 
-
 export class HomePage extends React.Component {
   // get a reference to the element after the component has mounted
   componentDidMount() {
@@ -124,4 +123,3 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([{ collection: 'posts' }]),
 )(HomePage);
-
