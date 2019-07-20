@@ -5,8 +5,10 @@ export const updateMessages = (toId, message, messageGroup) => (
   { getFirestore },
 ) => {
   const state = getState();
+  // get current user id
   const { uid: fromId } = state.firebase.auth;
 
+  // used to create only one group id
   let smallerId;
   let greaterId;
   if (fromId > toId) {
@@ -17,9 +19,11 @@ export const updateMessages = (toId, message, messageGroup) => (
     smallerId = fromId;
   }
 
+  // if there is no message groups current, create one
   if (!messageGroup) {
     const messages = [];
     messages.push({ from: fromId, message });
+    // push message to firestore
     getFirestore()
       .collection('messages')
       .add({
@@ -28,16 +32,20 @@ export const updateMessages = (toId, message, messageGroup) => (
         messages,
       });
   } else {
-    const found = Object.keys(state.firestore.data.messages).find(
+    // find docId to update messages
+    const allMessageGroups = state.firestore.data.messages;
+    const docId = Object.keys().find(
       (key) =>
-        state.firestore.data.messages[key] &&
-        state.firestore.data.messages[key].smallerId === smallerId &&
-        state.firestore.data.messages[key].greaterId === greaterId,
+        allMessageGroups[key] &&
+        allMessageGroups[key].smallerId === smallerId &&
+        allMessageGroups[key].greaterId === greaterId,
     );
+    // add message
     messageGroup.messages.push({ from: fromId, message });
+    // push to firestore
     getFirestore()
       .collection('messages')
-      .doc(found)
+      .doc(docId)
       .update(messageGroup);
   }
 };

@@ -8,14 +8,15 @@ import uuid from 'uuid';
 import { updateMessages as updateMessagesAction } from '../../store/actions/messageActions';
 
 const MessagesPage = (props) => {
+  // necessary props
   const { isLoggedIn, messageGroup, updateMessages, toId } = props;
-
+  // if user not logged in, redirect
   if (!isLoggedIn) return <Redirect to="/login" />;
-
+  // message send handler
   const handleMessageSend = () => {
     updateMessages(toId, 'message', messageGroup);
   };
-
+  // render html
   return (
     <div className="container">
       {messageGroup &&
@@ -30,10 +31,13 @@ const MessagesPage = (props) => {
   );
 };
 const mapStateToProps = (state, props) => {
+  // get id of to
   const { id: toId } = props.match.params;
+  // get all messages
   const { messages: allMessageGroups } = state.firestore.ordered;
+  // get id of sender
   const fromId = state.firebase.auth.uid;
-
+  // use to distinguish between message groups
   let smallerId;
   let greaterId;
   if (fromId > toId) {
@@ -43,7 +47,7 @@ const mapStateToProps = (state, props) => {
     greaterId = toId;
     smallerId = fromId;
   }
-
+  // find the message group
   const messageGroup =
     allMessageGroups &&
     allMessageGroups.find((m) => m.smallerId === smallerId && m.greaterId === greaterId);
@@ -55,12 +59,12 @@ const mapStateToProps = (state, props) => {
     isLoggedIn: state.firebase.auth.uid,
   };
 };
-
+// get update message functions
 const mapDispatchToProps = (dispatch) => ({
   updateMessages: (toId, message, messageGroup) =>
     dispatch(updateMessagesAction(toId, message, messageGroup)),
 });
-
+// connect and export
 export default compose(
   connect(
     mapStateToProps,
