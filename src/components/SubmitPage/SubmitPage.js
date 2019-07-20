@@ -89,6 +89,18 @@ export const SubmitPage = (props) => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="description">location</label>
+          <input
+            type="text"
+            id="description"
+            aria-describedby="descriptionHelp"
+            placeholder="Enter Location"
+            value={description}
+            // set the description var if user changes
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
         {/* call handleFileChange when user changes file */}
         <input type="file" onChange={handleFileChange} />
         <button type="submit">Submit</button>

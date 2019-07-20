@@ -8,105 +8,9 @@
   padding-top: 10px;
 }
 
-.mailbox {
-  margin: 0px auto -100px;
-  position: relative;
-  top: 150px;
-  background: #b3d9ff;
-  border-radius: 0px 5px 0px 0px;
-  width: 90%;
-  max-width: 960px;
-}
-
-.nav {
-  display: block;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  background: #eee;
-  width: 200px;
-  padding: 10px;
-}
-
-.nav button {
-  display: block;
-  padding: 5px 10px;
-  color: #3d9fc4;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.nav a.active {
-  background: #ccdded;
-}
-
-.nav a:first-child {
-  margin: 10px 0px 10px;
-}
-
 .messages {
   padding: 10px 10px 10px 210px;
   width: 100%;
-}
-
-.actions-dropdown {
-  display: block;
-  float: right;
-  position: relative;
-  margin: 5px 10px 10px 0px;
-}
-
-.actions-dropdown label {
-  padding: 5px 10px;
-  background: #eee;
-  color: #666;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.actions-dropdown label span {
-  color: #999;
-  font-size: 10px;
-}
-
-.actions-dropdown:hover ul {
-  display: block;
-}
-
-.actions-dropdown ul {
-  display: none;
-  position: absolute;
-  list-style: none;
-  background: #eee;
-  border-radius: 5px;
-  width: 100%;
-}
-
-.actions-dropdown li {
-  padding: 5px 10px;
-  color: #666;
-  cursor: pointer;
-}
-
-.actions-dropdown li:hover {
-  color: #000;
-}
-
-.actions-dropdown li:first-child {
-  margin-top: 5px;
-}
-
-.input-search {
-  display: block;
-  float: right;
-  margin-bottom: 10px;
-  padding: 5px 10px;
-  background: #eee;
-  font: 14px Tahoma, Geneva, sans-serif;
-  border-radius: 5px;
-  &:focus {
-    outline: none;
-  }
 }
 
 .message {
@@ -143,14 +47,4 @@
 .message .date {
   position: absolute;
   right: 10px;
-}
-
-.btngroup button {
-  background-color: #eee; /* Green background */
-  border: 1px solid EEE; /* Green border */
-  color: #3d9fc4;
-  cursor: pointer; /* Pointer/hand icon */
-  width: 50%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
-  padding-top: 10px;
 }
