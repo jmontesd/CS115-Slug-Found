@@ -1,7 +1,7 @@
 import React from 'react';
 import './MessagesPage.scss';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import uuid from 'uuid';
@@ -45,14 +45,14 @@ class MessagesPage extends React.Component {
 
   render() {
     // necessary props
-    const { toUserName, isLoggedIn, messageGroup } = this.props;
+    const { toUserName, isLoggedIn, messageGroup, toId } = this.props;
     // use to store message
     // if user not logged in, redirect
     if (!isLoggedIn) return <Redirect to="/login" />;
     // render html
     return (
       <div className="auth-wrapper mb-2">
-        <h2>{toUserName}</h2>
+        <Link to={`/profile/${toId}`}>{toUserName}</Link>
         <div className="messages-container">
           {messageGroup && messageGroup.messages.map((m) => this.renderMessage(m))}
           <div
