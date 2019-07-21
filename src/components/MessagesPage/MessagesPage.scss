@@ -1,58 +1,38 @@
-.to {
-  font-size: 30px;
-  padding-bottom: 10px;
-  padding-top: 5px;
+.MessagesPage-container {
+  display: flex;
+  flex-direction: row;
+  max-height: calc(100vh - 120px);
 }
 
-.sub {
-  padding-top: 10px;
+.MessagesPage-container__users {
+  max-width: 15rem;
 }
 
-.messages {
-  padding: 10px 10px 10px 210px;
-  width: 100%;
+.MessagesPage-container__message-page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.message {
-  clear: both;
-  margin-bottom: 5px;
-  position: relative;
-  padding: 5px;
-  background: #f2f2f2;
-  border-radius: 5px;
+.MessageViewer-message-input-and-send {
+  display: flex;
+  flex-direction: row;
 }
 
-.message input {
-  position: absolute;
-  top: 8px;
-  left: 10px;
-  width: 30px;
+.MessageViewer-message-input {
+  margin-bottom: 0 !important;
 }
 
-.message .sender {
-  display: block;
-  position: absolute;
-  left: 40px;
-  color: #000;
-  font-weight: bold;
-  width: 90px;
+.MessageViewer-message-button {
+  align-self: flex-end;
+  margin-left: 1rem;
 }
-
-.message .title {
-  display: inline-block;
-  padding-left: 150px;
-  width: 100%;
-}
-
-.message .date {
-  position: absolute;
-  right: 10px;
-}
-
-.messages-container {
-  max-height: 400px;
+.MessageViewer-container {
+  border: 1px solid rgb(218, 220, 224);
+  padding: 1rem;
   overflow: scroll;
   overflow-x: hidden;
+  margin-bottom: 1rem;
 }
 
 .message-blue {
@@ -61,7 +41,7 @@
   margin-bottom: 10px;
   padding: 10px;
   background-color: #a8ddfd;
-  width: 200px;
+  width: 50%;
   height: 50px;
   text-align: left;
   font: 400 0.9em 'Open Sans', sans-serif;
@@ -72,10 +52,10 @@
 .message-orange {
   position: relative;
   margin-bottom: 10px;
-  margin-left: calc(100% - 240px);
+  margin-left: calc(100% - 50%);
   padding: 10px;
   background-color: #f8e896;
-  width: 200px;
+  width: calc(50% - 40px);
   height: 50px;
   text-align: left;
   font: 400 0.9em 'Open Sans', sans-serif;
@@ -94,7 +74,7 @@
   font-size: 0.85em;
   font-weight: 300;
   bottom: 5px;
-  right: 5px;
+  right: 7px;
 }
 
 .message-timestamp-left {
@@ -102,7 +82,7 @@
   font-size: 0.85em;
   font-weight: 300;
   bottom: 5px;
-  left: 5px;
+  left: 7px;
 }
 
 .message-blue:after {

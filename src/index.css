@@ -9,3 +9,18 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.auth-wrapper {
+  border: 1px solid rgb(218, 220, 224);
+  border-radius: 1rem;
+  padding: 1rem;
+  max-width: 30rem;
+  margin: 0 auto;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.file-wrapper {
+  margin-bottom: 1rem;
+}
+/* to fix conflict with bootstrap and materalize */
