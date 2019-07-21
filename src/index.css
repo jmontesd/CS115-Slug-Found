@@ -20,7 +20,4 @@ code {
 .cursor-pointer {
   cursor: pointer;
 }
-.file-wrapper {
-  margin-bottom: 1rem;
-}
 /* to fix conflict with bootstrap and materalize */

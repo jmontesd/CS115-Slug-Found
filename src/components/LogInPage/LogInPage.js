@@ -41,31 +41,22 @@ export const LogInPage = (props) => {
     <div className="auth-wrapper">
       {/* onSubmit is called when form submitted */}
       <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            value={email}
-            // set the email var if user changes
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            placeholder="Password"
-            value={password}
-            // set the password var if user changes
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <label htmlFor="email">Email address</label>
+        <input
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          // set the email var if user changes
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          // set the password var if user changes
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <Link className="mb-2 d-block" to="/reset">
           Reset Password
         </Link>

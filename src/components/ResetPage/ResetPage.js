@@ -36,19 +36,14 @@ export const ResetPage = (props) => {
     <div className="auth-wrapper">
       {/* onSubmit is called when form submitted */}
       <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            value={email}
-            // set the email var if user changes
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+        <label htmlFor="email">Email address</label>
+        <input
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          // set the email var if user changes
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <button type="submit" className="btn btn-primary full-width">
           Reset Password
         </button>
