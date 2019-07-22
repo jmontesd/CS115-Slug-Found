@@ -1,10 +1,9 @@
 import React from 'react';
 import './SideBar.scss';
-import { compose } from 'redux';
-import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import M from 'materialize-css';
+import { signOut as actionSignOut, signOut } from '../../store/actions/authActions';
 
 export class SideBar extends React.Component{
   // get a reference to the element after the component has mounted
@@ -13,8 +12,25 @@ export class SideBar extends React.Component{
     M.Collapsible.init(this.collapsible);
   }
 
+// currently, proper buttons show up on sidebar, but signOut does not work
+// my profile takes you to a profile, but it does not show posts. 
+
   render() {
     const { isLoggedIn } = this.props;
+
+    const renderSubmitCollapse = (
+        <Link to="/submit" > Submit </Link>
+    );
+
+    const renderSignOut = (
+      <Link to="/loginpage" onClick={ signOut }> Sign Out </Link>
+    );
+
+    const renderNothing = (
+      " "
+  );
+
+
 
     if (!isLoggedIn) return <Redirect to="/login" />;
 
@@ -74,8 +90,10 @@ export class SideBar extends React.Component{
                 <i className="material-icons">person</i>Second
               </div>
               <div className="collapsible-body">
-                {/* <p><Link to= {user/isLoggedIn}> My Profile </Link></p> */}
-                <p><Link to= "/messages"> My Messages </Link></p>
+                <p><Link to= {'/profile/' +isLoggedIn}> My Profile </Link> </p>
+                <p><Link to= "/messages"> My Messages </Link> </p>
+                <p>{isLoggedIn ? renderSubmitCollapse : renderNothing}</p>
+                <p>{isLoggedIn ? renderSignOut : renderNothing}</p>
               </div>
             </li>
           </ul>
@@ -89,6 +107,12 @@ const mapStateToProps = (state) => ({
     isLoggedIn: state.firebase.auth.uid,
   });
 
-export default compose(
-  connect(mapStateToProps),
+const mapDispatchToProps = (dispatch) => ({
+  signOut: () => dispatch(actionSignOut()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
 )(SideBar);
+

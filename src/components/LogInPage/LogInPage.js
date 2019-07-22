@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { logIn as logInAction } from '../../store/actions/authActions';
 import './LogInPage.scss';
+import NavBar from '../NavBar/NavBar';
 
 export const LogInPage = (props) => {
   // these are the props need for this component
@@ -39,6 +40,7 @@ export const LogInPage = (props) => {
   // render this to the screen
   return (
     <div className="auth-wrapper">
+      <NavBar/>
       {/* onSubmit is called when form submitted */}
       <form onSubmit={onSubmit}>
         <div className="form-group">

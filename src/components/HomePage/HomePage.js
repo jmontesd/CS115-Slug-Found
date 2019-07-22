@@ -3,9 +3,9 @@ import './HomePage.scss';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
-import M from 'materialize-css';
+import { Redirect} from 'react-router-dom';
 import Item from '../Item/Item';
+import SearchBox from '../SearchBox/SearchBox';
 
 export class HomePage extends React.Component {
   // get a reference to the element after the component has mounted
@@ -13,7 +13,10 @@ export class HomePage extends React.Component {
   //   M.Sidenav.init(this.sidenav);
   //   M.Collapsible.init(this.collapsible);
   // }
-
+  state = {
+    searchItem:''
+  };
+  
   handleInput = (e) => {
     console.log(e.target.value); 
     this.setState({ searchItem: e.target.value})
