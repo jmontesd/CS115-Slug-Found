@@ -61,7 +61,7 @@ export const SignUpPage = (props) => {
   // render this to the screen
   return (
     <div className="auth-wrapper">
-       <img src={logo} alt="Logo" id="logo" />
+      <img src={logo} alt="Logo" id="logo" />
       {/* onSubmit is called when form submitted */}
       <form onSubmit={onSubmit}>
         <label htmlFor="username">Username</label>
