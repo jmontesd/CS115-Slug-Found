@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MessagesPage /> should render MessagesPage properly 1`] = `ShallowWrapper {}`;

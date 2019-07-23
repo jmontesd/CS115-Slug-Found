@@ -7,7 +7,8 @@ import { ItemPage } from './ItemPage';
 configure({ adapter: new Adapter() });
 
 describe('<ItemPage />', () => {
-  it('should ', () => {
+  it('should render ItemPage properly ', () => {
     const wrapper = shallow(<ItemPage isLoggedIn />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

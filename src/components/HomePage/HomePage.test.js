@@ -7,7 +7,8 @@ import { HomePage } from './HomePage';
 configure({ adapter: new Adapter() });
 
 describe('<HomePage />', () => {
-  it('should ', () => {
+  it('should render HomePage properly', () => {
     const wrapper = shallow(<HomePage isLoggedIn />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

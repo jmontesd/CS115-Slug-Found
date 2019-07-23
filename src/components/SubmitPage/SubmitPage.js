@@ -32,11 +32,11 @@ export const SubmitPage = (props) => {
   };
   // make sure user submitted valid data
   const validateForm = () => {
-    if (!title.trim()) {
+    if (!title || !title.trim()) {
       setError('Please enter a title.');
       return false;
     }
-    if (!description.trim()) {
+    if (!description || !description.trim()) {
       setError('Please enter a description');
       return false;
     }
