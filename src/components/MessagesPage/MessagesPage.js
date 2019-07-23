@@ -7,6 +7,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import uuid from 'uuid';
 import MessageViewer from './MessageViewer';
 import { updateMessages as updateMessagesAction } from '../../store/actions/messageActions';
+import logo from '../logo.jpg';
 
 export const MessagesPage = (props) => {
   const [messageGroupIndex, setMessageGroupIndex] = useState(0);
@@ -37,6 +38,7 @@ export const MessagesPage = (props) => {
   // render html
   return (
     <div className="container">
+      <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale"  />
       <div className="MessagesPage-container">
         {users.length > 0 ? (
           <>

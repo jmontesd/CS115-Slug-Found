@@ -4,6 +4,7 @@ import './SubmitPage.scss';
 import { connect } from 'react-redux';
 import { uploadImage as uploadImageAction } from '../../firebase/firebase';
 import { addPost as addPostAction } from '../../store/actions/postActions';
+import logo from '../logo.jpg';
 
 export const SubmitPage = (props) => {
   // these are the props need for this component
@@ -68,6 +69,7 @@ export const SubmitPage = (props) => {
   // render this to the screen
   return (
     <div className="container">
+       <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale"  />
       {/* onSubmit is called when form submitted */}
       <form onSubmit={onSubmit}>
         <div className="form-group">
