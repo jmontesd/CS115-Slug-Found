@@ -39,10 +39,12 @@ export class SideBar extends React.Component {
     if (!isLoggedIn) return <Redirect to="/login" />;
 
     return (
+      // adds toggle button to hide sidebar
       <div className="container section">
         <a href="toggleBtn" className="sidenav-trigger" data-target="menu-side">
           <i className="material-icons">menu</i>
         </a>
+        {/* // adds javascript components in order for the toggle button to work when clicked */}
         <ul
           className="sidenav"
           id="menu-side"
@@ -59,9 +61,11 @@ export class SideBar extends React.Component {
                   className="centered"
                 /> */}
               </div>
+              {/* // Showcases user profile picture */}
               <Link to={`/profile/${isLoggedIn}`}>
                 <img alt="" src={profilePictureURL} className="circle" />
               </Link>
+              {/* // Showcases username */}
               <Link to={`/profile/${isLoggedIn}`}>
                 {/* <span class="name white"> Jacqueline Montes</span> */}
                 <span className="center-align name white">{username}</span>
@@ -70,12 +74,6 @@ export class SideBar extends React.Component {
             </div>
             <div className="div" />
           </li>
-          <ul
-            className="collapsible"
-            ref={(collapsible) => {
-              this.collapsible = collapsible;
-            }}
-          >
             <li>
               <div>
                 <li>
@@ -118,7 +116,6 @@ export class SideBar extends React.Component {
                 <li> {isLoggedIn ? renderSignOut : renderNothing}</li>
               </div>
             </li>
-          </ul>
         </ul>
       </div>
     );

@@ -9,17 +9,15 @@ import SearchBox from '../SearchBox/SearchBox';
 import Item from '../Item/Item';
 
 export class HomePage extends React.Component {
-  // get a reference to the element after the component has mounted
-  // componentDidMount() {
-  //   M.Sidenav.init(this.sidenav);
-  //   M.Collapsible.init(this.collapsible);
-  // }
+  
+  // Initial empty string property for search box 
   state = {
     searchItem: '',
   };
-
+  // Arrow function that will take an event as input for parameter: (user typing in search box) 
   handleInput = (e) => {
     console.log(e.target.value);
+    // Updates state above everytime user types some input with event
     this.setState({ searchItem: e.target.value });
   };
 
@@ -32,11 +30,13 @@ export class HomePage extends React.Component {
       <div className="container" id="body">
         <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale"  />
         <SearchBox handleInput={this.handleInput} />
+        {/* //Adds all posts that have been submitted */}
         <div className="HomePage-container">
           {posts &&
             posts
               .slice()
               .sort((a, b) => b.createdAt - a.createdAt)
+              // Filters posts depending on the title the user is typing
               .filter((post) => {
                 return post.title.toLowerCase().includes(this.state.searchItem.toLowerCase());
               })
