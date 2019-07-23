@@ -19,11 +19,8 @@ export const NavBar = (props) => {
     </div>
   );
   // holds html for messages, submit, and signout buttons
-  const renderMessagesSubmitSignOutButton = (
+  const renderSignOutButton = (
     <div className="d-flex flex-row">
-      <Link to="/submit" className="btn btn-outline-primary mr-2">
-        Submit
-      </Link>
       <Link className="btn btn-primary" to="/" onClick={signOut}>
         Sign Out
       </Link>
@@ -37,7 +34,8 @@ export const NavBar = (props) => {
           {'Slug&Found'}
         </Link>
         {/* render depending if the user is logged in or not */}
-        {isLoggedIn ? renderMessagesSubmitSignOutButton : renderLogInSignUpButtons}
+        {/* {(isLoggedIn) { return renderLogInSignUpButtons}} ; */}
+        {isLoggedIn ? renderSignOutButton : renderLogInSignUpButtons}
       </div>
     </nav>
   );

@@ -6,8 +6,7 @@ import MessagesPage from '../components/MessagesPage/MessagesPage';
 import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
 import ProfilePage from '../components/ProfilePage/ProfilePage';
 import SubmitPage from '../components/SubmitPage/SubmitPage';
-// import NavBar from '../components/NavBar/NavBar';
-import SideBar from '../components/SideBar/SideBar';
+import SideBar from '../components/SideBar/SideBar'
 import SignUpPage from '../components/SignUpPage/SignUpPage';
 import LogInPage from '../components/LogInPage/LogInPage';
 
@@ -16,9 +15,9 @@ import ResetPage from '../components/ResetPage/ResetPage';
 const AppRouter = () => (
   <BrowserRouter>
     <div>
-      {/* navbar always shows up */}
+      {/* sidebar always shows up */}
       {/* <NavBar /> */}
-      <SideBar />
+      <SideBar/>
       <Switch>
         {/* depending on path, render that component */}
         <Route path="/" component={HomePage} exact />
