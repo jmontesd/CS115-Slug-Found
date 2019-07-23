@@ -5,6 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import moment from 'moment';
+import logo from '../logo.jpg';
 import { deletePost as deletePostAction } from '../../store/actions/postActions';
 
 export const ItemPage = (props) => {
@@ -24,9 +25,12 @@ export const ItemPage = (props) => {
   }
   // render this to the screen
   return (
+    
     <>
+    <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale"  />
       {/* if there is a post, render it */}
       {post && (
+        
         <div className="container">
           <div className="ItemPage-Title">{post.title}</div>
           <div id="ItemPage-background">

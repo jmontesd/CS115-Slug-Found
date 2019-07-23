@@ -4,9 +4,9 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.sidenav {
-  // Move sidebar down
-  // top: 0;
-  // margin: 64px 0px 0px 0px;
-  position: fixed;
+
+.logo {
+  position: absolute;
+  top: 20px;
+  right: 40px;
 }

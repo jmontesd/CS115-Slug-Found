@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-// import M from 'materialize-css';
+import logo from '../logo.jpg';
 import SearchBox from '../SearchBox/SearchBox';
 import Item from '../Item/Item';
 
@@ -23,6 +23,7 @@ export class HomePage extends React.Component {
 
     return (
       <div className="container" id="body">
+        <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale"  />
         <SearchBox handleInput={this.handleInput} />
         <div className="HomePage-container">
           {posts &&

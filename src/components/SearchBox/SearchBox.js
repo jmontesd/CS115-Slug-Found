@@ -8,7 +8,7 @@ function SearchBox(props) {
       
 
            <div>
-               <input onChange={props.handleInput} type="text" id="search-box" placeholder="Search Item"/>
+               <input onChange={props.handleInput} type="text" id="search-box" placeholder="Search Item . . ."/>
             </div> 
     
      

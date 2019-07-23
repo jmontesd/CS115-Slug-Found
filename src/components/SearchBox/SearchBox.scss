@@ -1,3 +1,11 @@
-.search-box {
-  position: absolute;
+#search-box {
+  // position: absolute;
+  background-color: #fffaf0;
+  border-radius: 35px;
+  padding-left: 15px;
+  width: 80%;
+}
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: grey;
 }
