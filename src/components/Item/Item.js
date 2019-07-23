@@ -8,7 +8,7 @@ export const Item = (props) => {
   const { post } = props;
   // render this as html
   return (
-    <div className="container" id="post">
+    <div id="post">
       <div className="postText">
         <Link to={`/item/${post.id}`}>{post.title}</Link>
       </div>

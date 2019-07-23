@@ -1,7 +1,8 @@
 .HomePage-container {
-  display: grid;
-  grid-column: 1;
-  row-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .sidenav {
   // Move sidebar down

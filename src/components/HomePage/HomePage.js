@@ -9,7 +9,6 @@ import SearchBox from '../SearchBox/SearchBox';
 import Item from '../Item/Item';
 
 export class HomePage extends React.Component {
-  
   state = { searchItem: '' };
 
   handleInput = (e) => {
@@ -25,14 +24,16 @@ export class HomePage extends React.Component {
     return (
       <div className="container" id="body">
         <SearchBox handleInput={this.handleInput} />
-        {posts &&
-          posts
-            .slice()
-            .sort((a, b) => b.createdAt - a.createdAt)
-            .filter((post) => {
-              return post.title.toLowerCase().includes(this.state.searchItem.toLowerCase());
-            })
-            .map((post) => <Item key={post.id} post={post} />)}
+        <div className="HomePage-container">
+          {posts &&
+            posts
+              .slice()
+              .sort((a, b) => b.createdAt - a.createdAt)
+              .filter((post) => {
+                return post.title.toLowerCase().includes(this.state.searchItem.toLowerCase());
+              })
+              .map((post) => <Item key={post.id} post={post} />)}
+        </div>
       </div>
     );
   }
