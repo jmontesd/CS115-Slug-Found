@@ -23,7 +23,7 @@ export class SideBar extends React.Component {
     const renderSubmit = (
       <Link to="/submit">
         {' '}
-        <i className="material-icons">sort</i> Submit{' '}
+        <i className="material-icons">sort</i> New Post{' '}
       </Link>
     );
 
