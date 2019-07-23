@@ -1,7 +1,7 @@
 import React from 'react';
 import './SideBar.scss';
 import { compose } from 'redux';
-import { firestoreConnect } from 'react-redux-firebase'
+import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import M from 'materialize-css';
@@ -15,30 +15,32 @@ export class SideBar extends React.Component {
   }
 
   // currently, proper buttons show up on sidebar, but signOut does not work
-  // my profile takes you to a profile, but it does not show posts. 
+  // my profile takes you to a profile, but it does not show posts.
 
   render() {
     const { isLoggedIn, signOut, username } = this.props;
 
     const renderSubmit = (
-      <Link to="/submit" > <i className="material-icons">sort</i>  Submit </Link>
+      <Link to="/submit">
+        {' '}
+        <i className="material-icons">sort</i> Submit{' '}
+      </Link>
     );
 
     const renderSignOut = (
-      <Link to="/loginpage" onClick={signOut}> <i className="material-icons">power_settings_new</i> Sign Out </Link>
+      <Link to="/loginpage" onClick={signOut}>
+        {' '}
+        <i className="material-icons">power_settings_new</i> Sign Out{' '}
+      </Link>
     );
 
-    const renderNothing = (
-      " "
-    );
-
-
+    const renderNothing = ' ';
 
     if (!isLoggedIn) return <Redirect to="/login" />;
 
     return (
       <div className="container section">
-        <a href="toggleBtn" class="sidenav-trigger" data-target="menu-side">
+        <a href="toggleBtn" className="sidenav-trigger" data-target="menu-side">
           <i className="material-icons">menu</i>
         </a>
         <ul
@@ -57,18 +59,18 @@ export class SideBar extends React.Component {
                   className="centered"
                 />
               </div>
-              <a href="#user">
+              <Link to={`/profile/${isLoggedIn}`}>
                 <img
                   alt=""
                   src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto/gigs/5536321/original/stickfigure/make-a-hand-drawn-stick-figure-portrait.png"
                   className="circle"
                 />
-              </a>
-              <a href="#name">
+              </Link>
+              <Link to={`/profile/${isLoggedIn}`}>
                 {/* <span class="name white"> Jacqueline Montes</span> */}
                 <span className="center-align name white">{username}</span>
                 <p />
-              </a>
+              </Link>
             </div>
             <div className="div" />
           </li>
@@ -80,17 +82,34 @@ export class SideBar extends React.Component {
           >
             <li>
               <div>
-                <li> <Link to="/"><i className="material-icons">home</i> HomePage </Link> </li>
+                <li>
+                  {' '}
+                  <Link to="/">
+                    <i className="material-icons">home</i> HomePage{' '}
+                  </Link>{' '}
+                </li>
               </div>
             </li>
             <li>
               <div>
-                <li> <Link to={'/profile/' + isLoggedIn}> <i className="material-icons">person</i>  My Profile </Link>  </li>
+                <li>
+                  {' '}
+                  <Link to={`/profile/${isLoggedIn}`}>
+                    {' '}
+                    <i className="material-icons">person</i> My Profile{' '}
+                  </Link>{' '}
+                </li>
               </div>
             </li>
             <li>
               <div>
-                <li> <Link to="/messages"> <i className="material-icons">messages</i>  My Messages </Link></li>
+                <li>
+                  {' '}
+                  <Link to="/messages">
+                    {' '}
+                    <i className="material-icons">messages</i> My Messages{' '}
+                  </Link>
+                </li>
               </div>
             </li>
             <li>
@@ -117,11 +136,11 @@ const mapStateToProps = (state) => {
   // get their username
   const username = user && user.username;
   // get their picture
-  return ({
+  return {
     username,
     isLoggedIn: state.firebase.auth.uid,
-  });
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(actionSignOut()),
@@ -135,4 +154,3 @@ export default compose(
   // connect firestore with all posts and users
   firestoreConnect([{ collection: 'users' }]),
 )(SideBar);
-

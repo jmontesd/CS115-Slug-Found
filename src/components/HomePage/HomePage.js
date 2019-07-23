@@ -7,7 +7,6 @@ import { Redirect } from 'react-router-dom';
 // import M from 'materialize-css';
 import SearchBox from '../SearchBox/SearchBox';
 import Item from '../Item/Item';
-import SearchBox from '../SearchBox/SearchBox';
 
 export class HomePage extends React.Component {
   // get a reference to the element after the component has mounted
@@ -16,9 +15,9 @@ export class HomePage extends React.Component {
   //   M.Collapsible.init(this.collapsible);
   // }
   state = {
-    searchItem:''
+    searchItem: '',
   };
-  
+
   handleInput = (e) => {
     console.log(e.target.value);
     this.setState({ searchItem: e.target.value });
