@@ -37,13 +37,14 @@ export const ItemPage = (props) => {
           {/* formats date */}
           <div id="ItemPage-post">{post.description}</div>
           <img alt="item" src={post.imageURL} id="ItemPage-imageSize"/> 
-          <div>Location:</div>
+          <div id="ItemPage-location">Location: {post.location}</div>
+          <div id="ItemPage-timeDate">{`${moment(post.createdAt).calendar()}`}</div>
           {isUserProfileTheUserLoggedIn && (
             <button type="button" className="btn btn-danger d-block" onClick={handleDelete}>
               Delete
             </button>
           )}
-         <div id="ItemPage-timeDate">{`${moment(post.createdAt).calendar()}`}</div>
+         
         </div>
         </div>
       )}

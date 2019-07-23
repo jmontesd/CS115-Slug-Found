@@ -11,6 +11,7 @@ export const SubmitPage = (props) => {
   // vars needed for this component
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [location, setLocation] = useState('');
   const [error, setError] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [redirect, setRedirect] = useState(false);
@@ -43,6 +44,10 @@ export const SubmitPage = (props) => {
       setError('Please enter an image');
       return false;
     }
+    if (!location.trim()) {
+      setError('Please enter a Location');
+      return false;
+    }
     return true;
   };
   // when user hits submmit
@@ -55,7 +60,7 @@ export const SubmitPage = (props) => {
       // upload the image and then add the post to firebase
       // then redirect to that image
       uploadImage(imageFile, (id, imageURL) => {
-        addPost({ id, title, description, imageURL });
+        addPost({ id, title, description, location, imageURL });
         setRedirect(id);
       });
     }
@@ -90,15 +95,15 @@ export const SubmitPage = (props) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="description">location</label>
+          <label htmlFor="location">Location</label>
           <input
             type="text"
-            id="description"
-            aria-describedby="descriptionHelp"
+            id="location"
+            aria-describedby="locationHelp"
             placeholder="Enter Location"
-            value={description}
-            // set the description var if user changes
-            onChange={(e) => setDescription(e.target.value)}
+            value={location}
+            // set the location var if user changes
+            onChange={(e) => setLocation(e.target.value)}
           />
         </div>
         {/* call handleFileChange when user changes file */}
