@@ -57,12 +57,18 @@ export const LogInPage = (props) => {
           // set the password var if user changes
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Link className="mb-2 d-block" to="/reset">
+        <Link className="d-block" to="/reset">
           Reset Password
         </Link>
-        <button type="submit" className="btn btn-primary full-width">
-          Sign In
-        </button>
+        <div className="d-flex justify-content-between align-items-center">
+          <div>
+            {`Don't have an account? `}
+            <Link to="/signup">Sign Up</Link>
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Sign In
+          </button>
+        </div>
         {/* if there is an error, render it to the screen */}
         {error && <div className="mt-2 alert alert-danger">{error}</div>}
         {/* if firebase says there is an error, render that to the screen only if

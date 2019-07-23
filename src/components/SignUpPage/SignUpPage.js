@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { signUp as signUpAction } from '../../store/actions/authActions';
 import './SignUpPage.scss';
 
@@ -93,9 +93,12 @@ export const SignUpPage = (props) => {
         </label>
         {/* if there is an imageFile, render the name to screen */}
         <span>{imageFile && imageFile.name}</span>
-        <button type="submit" className="btn btn-primary full-width">
-          Sign Up
-        </button>
+        <div className="d-flex justify-content-between align-items-center">
+          <Link to="/login">Log in instead</Link>
+          <button type="submit" className="btn btn-primary">
+            Sign Up
+          </button>
+        </div>
         {/* if there is an error, render it to the screen */}
         {error && <div className="mt-2 alert alert-danger">{error}</div>}
         {/* if firebase says there is an error, render that to the screen only if
