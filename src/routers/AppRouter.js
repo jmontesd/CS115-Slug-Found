@@ -6,7 +6,7 @@ import MessagesPage from '../components/MessagesPage/MessagesPage';
 import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
 import ProfilePage from '../components/ProfilePage/ProfilePage';
 import SubmitPage from '../components/SubmitPage/SubmitPage';
-import NavBar from '../components/NavBar/NavBar';
+// import NavBar from '../components/NavBar/NavBar';
 import SideBar from '../components/SideBar/SideBar';
 import SignUpPage from '../components/SignUpPage/SignUpPage';
 import LogInPage from '../components/LogInPage/LogInPage';
@@ -17,7 +17,7 @@ const AppRouter = () => (
   <BrowserRouter>
     <div>
       {/* navbar always shows up */}
-      <NavBar />
+      {/* <NavBar /> */}
       <SideBar />
       <Switch>
         {/* depending on path, render that component */}

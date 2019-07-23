@@ -1,7 +1,7 @@
 import React from 'react';
 import './SideBar.scss';
 import { compose } from 'redux';
-import { firestoreConnect } from 'react-redux-firebase';
+// import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import M from 'materialize-css';
@@ -20,8 +20,11 @@ export class SideBar extends React.Component{
 
     return (
       <div className="container section">
+        <a href="toggleBtn" class="sidenav-trigger" data-target="menu-side">
+          <i className="material-icons">menu</i>
+        </a>
         <ul
-          className="sidenav sidenav-fixed"
+          className="sidenav"
           id="menu-side"
           ref={(sidenav) => {
             this.sidenav = sidenav;
