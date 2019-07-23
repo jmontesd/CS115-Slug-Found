@@ -44,6 +44,7 @@ export const LogInPage = (props) => {
         <label htmlFor="email">Email address</label>
         <input
           type="email"
+          id="email"
           placeholder="Enter email"
           value={email}
           // set the email var if user changes
@@ -52,6 +53,7 @@ export const LogInPage = (props) => {
         <label htmlFor="password">Password</label>
         <input
           type="password"
+          id="password"
           placeholder="Password"
           value={password}
           // set the password var if user changes

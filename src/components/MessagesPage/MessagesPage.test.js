@@ -7,7 +7,8 @@ import { MessagesPage } from './MessagesPage';
 configure({ adapter: new Adapter() });
 
 describe('<MessagesPage />', () => {
-  it('should ', () => {
-    const wrapper = shallow(<MessagesPage isLoggedIn />);
+  it('should render MessagesPage properly', () => {
+    const wrapper = shallow(<MessagesPage users={[]} isLoggedIn />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

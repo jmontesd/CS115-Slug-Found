@@ -31,11 +31,11 @@ export const SubmitPage = (props) => {
   };
   // make sure user submitted valid data
   const validateForm = () => {
-    if (!title.trim()) {
+    if (!title || !title.trim()) {
       setError('Please enter a title.');
       return false;
     }
-    if (!description.trim()) {
+    if (!description || !description.trim()) {
       setError('Please enter a description');
       return false;
     }
@@ -90,11 +90,11 @@ export const SubmitPage = (props) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="description">location</label>
+          <label htmlFor="location">location</label>
           <input
             type="text"
-            id="description"
-            aria-describedby="descriptionHelp"
+            id="location"
+            aria-describedby="locationHelp"
             placeholder="Enter Location"
             value={description}
             // set the description var if user changes

@@ -65,6 +65,7 @@ export const SignUpPage = (props) => {
         <label htmlFor="username">Username</label>
         <input
           type="text"
+          id="username"
           placeholder="Enter username"
           value={username}
           // set the username var if user changes
@@ -73,6 +74,7 @@ export const SignUpPage = (props) => {
         <label htmlFor="email">Email address</label>
         <input
           type="email"
+          id="email"
           placeholder="Enter email"
           value={email}
           // set the email var if user changes
@@ -81,6 +83,7 @@ export const SignUpPage = (props) => {
         <label htmlFor="password">Password</label>
         <input
           type="password"
+          id="password"
           placeholder="Password"
           value={password}
           // set the password var if user changes
