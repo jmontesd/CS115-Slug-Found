@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { logIn as logInAction } from '../../store/actions/authActions';
 import './LogInPage.scss';
-import NavBar from '../NavBar/NavBar';
+import logo from '../logo.jpeg';
 
 export const LogInPage = (props) => {
   // these are the props need for this component
@@ -39,8 +39,9 @@ export const LogInPage = (props) => {
   };
   // render this to the screen
   return (
+    <div>
     <div className="auth-wrapper">
-      <NavBar/>
+      <img src={logo} alt="Logo" id="logo" />
       {/* onSubmit is called when form submitted */}
       <form onSubmit={onSubmit}>
         <div className="form-group">
@@ -71,6 +72,9 @@ export const LogInPage = (props) => {
         <Link className="mb-2 d-block" to="/reset">
           Reset Password
         </Link>
+        <Link className="mb-2 d-block" to="/signup">
+          Don't have an account? Sign up.
+        </Link>
         <button type="submit" className="btn btn-primary full-width">
           Sign In
         </button>
@@ -80,6 +84,7 @@ export const LogInPage = (props) => {
         there already isn't an error on the screen */}
         {!error && loginError && <div className="mt-2 alert alert-danger">{loginError}</div>}
       </form>
+    </div>
     </div>
   );
 };

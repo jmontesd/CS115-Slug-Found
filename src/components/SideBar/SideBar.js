@@ -1,34 +1,36 @@
 import React from 'react';
 import './SideBar.scss';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase'
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import M from 'materialize-css';
-import { signOut as actionSignOut, signOut } from '../../store/actions/authActions';
+import { signOut as actionSignOut } from '../../store/actions/authActions';
 
-export class SideBar extends React.Component{
+export class SideBar extends React.Component {
   // get a reference to the element after the component has mounted
   componentDidMount() {
     M.Sidenav.init(this.sidenav);
     M.Collapsible.init(this.collapsible);
   }
 
-// currently, proper buttons show up on sidebar, but signOut does not work
-// my profile takes you to a profile, but it does not show posts. 
+  // currently, proper buttons show up on sidebar, but signOut does not work
+  // my profile takes you to a profile, but it does not show posts. 
 
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, signOut, username } = this.props;
 
-    const renderSubmitCollapse = (
-        <Link to="/submit" > Submit </Link>
+    const renderSubmit = (
+      <Link to="/submit" > <i className="material-icons">sort</i>  Submit </Link>
     );
 
     const renderSignOut = (
-      <Link to="/loginpage" onClick={ signOut }> Sign Out </Link>
+      <Link to="/loginpage" onClick={signOut}> <i className="material-icons">power_settings_new</i> Sign Out </Link>
     );
 
     const renderNothing = (
       " "
-  );
+    );
 
 
 
@@ -61,11 +63,8 @@ export class SideBar extends React.Component{
               </a>
               <a href="#name">
                 {/* <span class="name white"> Jacqueline Montes</span> */}
-                <span className="center-align name white">Jacqueline Montes</span>
+                <span className="center-align name white">{username}</span>
                 <p />
-              </a>
-              <a href="#email">
-                <span className="center-align name white"> jmontesd@ucsc.edu </span>
               </a>
             </div>
             <div className="div" />
@@ -77,23 +76,28 @@ export class SideBar extends React.Component{
             }}
           >
             <li>
-              <div className="collapsible-header">
-                <i className="material-icons">home</i>First
-              </div>
-              <div className="collapsible-body">
-                <p>Found Items</p>
-                <p>Lost Items</p>
+              <div>
+                <li> <Link to="/"><i className="material-icons">home</i> HomePage </Link> </li>
               </div>
             </li>
             <li>
-              <div className="collapsible-header">
-                <i className="material-icons">person</i>Second
+              <div>
+                <li> <Link to={'/profile/' + isLoggedIn}> <i className="material-icons">person</i>  My Profile </Link>  </li>
               </div>
-              <div className="collapsible-body">
-                <p><Link to= {'/profile/' +isLoggedIn}> My Profile </Link> </p>
-                <p><Link to= "/messages"> My Messages </Link> </p>
-                <p>{isLoggedIn ? renderSubmitCollapse : renderNothing}</p>
-                <p>{isLoggedIn ? renderSignOut : renderNothing}</p>
+            </li>
+            <li>
+              <div>
+                <li> <Link to="/messages"> <i className="material-icons">messages</i>  My Messages </Link></li>
+              </div>
+            </li>
+            <li>
+              <div>
+                <li> {isLoggedIn ? renderSubmit : renderNothing}</li>
+              </div>
+            </li>
+            <li>
+              <div>
+                <li> {isLoggedIn ? renderSignOut : renderNothing}</li>
               </div>
             </li>
           </ul>
@@ -103,16 +107,29 @@ export class SideBar extends React.Component{
   }
 }
 // export this component with the neccessary data
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+  const { users } = state.firestore.ordered;
+  // find the user
+  const user = users && users.find((i) => i.id === state.firebase.auth.uid);
+  // get their username
+  const username = user && user.username;
+  // get their picture
+  return ({
+    username,
     isLoggedIn: state.firebase.auth.uid,
   });
+}
 
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(actionSignOut()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  // connect firestore with all posts and users
+  firestoreConnect([{ collection: 'users' }]),
 )(SideBar);
 
