@@ -17,9 +17,9 @@ import ResetPage from '../components/ResetPage/ResetPage';
 const AppRouter = () => (
   <BrowserRouter>
     <div>
-      {/* navbar always shows up */}
+      {/* sidebar always shows up */}
       {/* <NavBar /> */}
-      <SideBar />
+      <SideBar/>
       <Switch>
         {/* depending on path, render that component */}
         <Route path="/" component={HomePage} exact />

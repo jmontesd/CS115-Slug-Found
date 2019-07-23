@@ -9,7 +9,14 @@ import SearchBox from '../SearchBox/SearchBox';
 import Item from '../Item/Item';
 
 export class HomePage extends React.Component {
-  state = { searchItem: '' };
+  // get a reference to the element after the component has mounted
+  // componentDidMount() {
+  //   M.Sidenav.init(this.sidenav);
+  //   M.Collapsible.init(this.collapsible);
+  // }
+  state = {
+    searchItem: '',
+  };
 
   handleInput = (e) => {
     console.log(e.target.value);

@@ -107,8 +107,19 @@ export const SubmitPage = (props) => {
           />
         </div>
         {/* call handleFileChange when user changes file */}
-        <input type="file" onChange={handleFileChange} />
-        <button type="submit">Submit</button>
+        <div className="d-flex justify-content-between">
+          <div>
+            <label className="btn btn-outline-info cursor-pointer">
+              <input className="d-none" type="file" onChange={handleFileChange} />
+              Choose File
+            </label>
+            {/* if there is an imageFile, render the name to screen */}
+            <span>{imageFile && imageFile.name}</span>
+          </div>
+          <button className="btn btn-primary" type="submit">
+            Submit
+          </button>
+        </div>
         {/* if there is an error, render it, otherwise render nothing */}
         {error && <div className="mt-2 alert alert-danger">{error}</div>}
       </form>

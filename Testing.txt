@@ -1,0 +1,10 @@
+We have created UI tests that test if the component renders properly based on
+conditionals.
+
+We also have created tests to make sure errors are shown on the screen when
+the user attempts to submit an imcomplete/invalid form.
+
+We also have created tests that test to make sure functions are being called
+when forms are submitted.
+
+Run 'npm test' to run test files.

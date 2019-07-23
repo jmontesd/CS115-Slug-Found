@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { signUp as signUpAction } from '../../store/actions/authActions';
 import './SignUpPage.scss';
+import logo from '../logo.jpeg';
 
 export const SignUpPage = (props) => {
   // these are the props need for this component
@@ -60,6 +61,7 @@ export const SignUpPage = (props) => {
   // render this to the screen
   return (
     <div className="auth-wrapper">
+      <img src={logo} alt="Logo" id="logo" />
       {/* onSubmit is called when form submitted */}
       <form onSubmit={onSubmit}>
         <label htmlFor="username">Username</label>
