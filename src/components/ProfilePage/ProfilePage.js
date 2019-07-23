@@ -5,6 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Item from '../Item/Item';
+import logo from '../logo.jpg';
 import { updateProfileImage as updateProfileImageAction } from '../../store/actions/authActions';
 import { createMessageGroup as createMessageGroupAction } from '../../store/actions/messageActions';
 
@@ -43,7 +44,10 @@ export const ProfilePage = (props) => {
   };
   // render this to the screen
   return (
+    
     <div className="container">
+              <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale"  />
+
       <div className="ProfilePage-row row">
         <div className="col-8">
           {/* if there are posts, render them to the screen */}
