@@ -66,7 +66,7 @@ export const LogInPage = (props) => {
             <Link to="/signup">Sign Up</Link>
           </div>
           <button type="submit" className="btn btn-primary">
-            Sign In
+            Log In
           </button>
         </div>
         {/* if there is an error, render it to the screen */}
