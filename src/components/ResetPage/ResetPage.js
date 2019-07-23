@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { resetPassword as resetPasswordAction } from '../../store/actions/authActions';
 import './ResetPage.scss';
 
@@ -36,22 +36,21 @@ export const ResetPage = (props) => {
     <div className="auth-wrapper">
       {/* onSubmit is called when form submitted */}
       <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            value={email}
-            // set the email var if user changes
-            onChange={(e) => setEmail(e.target.value)}
-          />
+        <label htmlFor="email">Email address</label>
+        <input
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          // set the email var if user changes
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <div className="d-flex justify-content-between align-items-center">
+          <Link to="/login">Log In</Link>
+          <button type="submit" className="btn btn-primary">
+            Reset Password
+          </button>
         </div>
-        <button type="submit" className="btn btn-primary full-width">
-          Reset Password
-        </button>
         {/* if there is an error, render it to the screen */}
         {error && <div className="mt-2 alert alert-danger">{error}</div>}
         {/* if firebase says there is an error, render that to the screen only if

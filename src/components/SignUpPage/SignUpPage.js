@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { signUp as signUpAction } from '../../store/actions/authActions';
 import './SignUpPage.scss';
 
@@ -62,56 +62,43 @@ export const SignUpPage = (props) => {
     <div className="auth-wrapper">
       {/* onSubmit is called when form submitted */}
       <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            aria-describedby="usernameHelp"
-            placeholder="Enter username"
-            value={username}
-            // set the username var if user changes
-            onChange={(e) => setUsername(e.target.value)}
-          />
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          placeholder="Enter username"
+          value={username}
+          // set the username var if user changes
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <label htmlFor="email">Email address</label>
+        <input
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          // set the email var if user changes
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          // set the password var if user changes
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div htmlFor="file">Profile Picture</div>
+        <label className="btn btn-outline-info cursor-pointer">
+          <input className="d-none" type="file" onChange={handleFileChange} />
+          Choose File
+        </label>
+        {/* if there is an imageFile, render the name to screen */}
+        <span>{imageFile && imageFile.name}</span>
+        <div className="d-flex justify-content-between align-items-center">
+          <Link to="/login">Log in instead</Link>
+          <button type="submit" className="btn btn-primary">
+            Sign Up
+          </button>
         </div>
-        <div className="form-group">
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            value={email}
-            // set the email var if user changes
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            placeholder="Password"
-            value={password}
-            // set the password var if user changes
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <div htmlFor="file">Profile Picture</div>
-          <label className="btn btn-outline-info cursor-pointer">
-            <input className="d-none" type="file" onChange={handleFileChange} />
-            Choose File
-          </label>
-          {/* if there is an imageFile, render the name to screen */}
-          <span className="ml-2">{imageFile && imageFile.name}</span>
-        </div>
-        <button type="submit" className="btn btn-primary full-width">
-          Sign Up
-        </button>
         {/* if there is an error, render it to the screen */}
         {error && <div className="mt-2 alert alert-danger">{error}</div>}
         {/* if firebase says there is an error, render that to the screen only if

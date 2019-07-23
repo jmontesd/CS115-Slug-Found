@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProfilePage.scss';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Item from '../Item/Item';
 import { updateProfileImage as updateProfileImageAction } from '../../store/actions/authActions';
+import { createMessageGroup as createMessageGroupAction } from '../../store/actions/messageActions';
 
 export const ProfilePage = (props) => {
+  // used to redirect user
+  const [redirect, setRedirect] = useState('');
+  if (redirect) return <Redirect to="/messages" />;
   // these are the props need for this component
   const {
+    createMessageGroup,
     id,
-    username,
-    posts,
     isLoggedIn,
-    profilePictureURL,
     isUserProfileTheUserLoggedIn,
+    messageGroup,
+    posts,
+    profilePictureURL,
     updateProfileImage,
+    username,
   } = props;
   // redirect use to login if they are not logged in
   if (!isLoggedIn) return <Redirect to="/login" />;
@@ -29,10 +35,16 @@ export const ProfilePage = (props) => {
       updateProfileImage(imageFile);
     }
   };
+  const handleMessage = () => {
+    if (!messageGroup) {
+      createMessageGroup(id);
+    }
+    setRedirect('/messages');
+  };
   // render this to the screen
   return (
     <div className="container">
-      <div className="row">
+      <div className="ProfilePage-row row">
         <div className="col-8">
           {/* if there are posts, render them to the screen */}
           {posts &&
@@ -42,8 +54,8 @@ export const ProfilePage = (props) => {
               .map((post) => <Item key={post.id} post={post} />)}
         </div>
         <div className="col-4">
-          <div className="profile-wrapper">
-            <img src={profilePictureURL} className="img-card" alt="Profile" />
+          <div className="ProfilePage-wrapper">
+            <img src={profilePictureURL} className="ProfilePage-img-card" alt="Profile" />
             {/* if the user profile is the user logged in, render change profile picture button */}
             {isUserProfileTheUserLoggedIn && (
               <label className="btn btn-outline-info cursor-pointer d-block mt-2 ">
@@ -51,10 +63,12 @@ export const ProfilePage = (props) => {
                 Change Profile Picture
               </label>
             )}
-            <div className="card-title">{username}</div>
-            <Link to={`/messages/message/${id}`} className="btn btn-warning full-width">
-              Message
-            </Link>
+            <div className="ProfilePage-card-title">{username}</div>
+            {!isUserProfileTheUserLoggedIn && (
+              <button type="button" onClick={handleMessage} className="btn btn-warning full-width">
+                Message
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -77,10 +91,30 @@ const mapStateToProps = (state, props) => {
   const posts = allPosts && allPosts.filter((i) => i.user.id === id);
   // check if user profile is the user logged in
   const isUserProfileTheUserLoggedIn = id === state.firebase.auth.uid;
+  // get all messages
+  const { messages: allMessageGroups } = state.firestore.ordered;
+  // get id of sender
+  const fromId = state.firebase.auth.uid;
+  // use to distinguish between message groups
+  let smallerId;
+  let greaterId;
+  if (fromId > id) {
+    greaterId = fromId;
+    smallerId = id;
+  } else {
+    greaterId = id;
+    smallerId = fromId;
+  }
+  // find the message group
+  const messageGroup =
+    allMessageGroups &&
+    allMessageGroups.find((m) => m.smallerId === smallerId && m.greaterId === greaterId);
+
   return {
     id,
     isLoggedIn: state.firebase.auth.uid,
     isUserProfileTheUserLoggedIn,
+    messageGroup,
     profilePictureURL,
     posts,
     username,
@@ -90,6 +124,7 @@ const mapStateToProps = (state, props) => {
 // for the user
 const mapDispatchToProps = (dispatch) => ({
   updateProfileImage: (update) => dispatch(updateProfileImageAction(update)),
+  createMessageGroup: (toId) => dispatch(createMessageGroupAction(toId)),
 });
 // export this component with the neccessary data
 export default compose(
