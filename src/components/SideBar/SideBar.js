@@ -53,11 +53,11 @@ export class SideBar extends React.Component {
           <li>
             <div className="user-view">
               <div className="background">
-                <img
+                {/* <img
                   alt=""
                   src="https://bodhispiritualcenter.org/wp-content/uploads/2014/10/redwoods-looking-up-650x487.jpg"
                   className="centered"
-                />
+                /> */}
               </div>
               <Link to={`/profile/${isLoggedIn}`}>
                 <img alt="" src={profilePictureURL} className="circle" />
