@@ -18,7 +18,7 @@ export class SideBar extends React.Component {
   // my profile takes you to a profile, but it does not show posts.
 
   render() {
-    const { isLoggedIn, signOut, username } = this.props;
+    const { isLoggedIn, signOut, username, profilePictureURL } = this.props;
 
     const renderSubmit = (
       <Link to="/submit">
@@ -60,11 +60,7 @@ export class SideBar extends React.Component {
                 />
               </div>
               <Link to={`/profile/${isLoggedIn}`}>
-                <img
-                  alt=""
-                  src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto/gigs/5536321/original/stickfigure/make-a-hand-drawn-stick-figure-portrait.png"
-                  className="circle"
-                />
+                <img alt="" src={profilePictureURL} className="circle" />
               </Link>
               <Link to={`/profile/${isLoggedIn}`}>
                 {/* <span class="name white"> Jacqueline Montes</span> */}
@@ -136,7 +132,9 @@ const mapStateToProps = (state) => {
   // get their username
   const username = user && user.username;
   // get their picture
+  const profilePictureURL = user && user.profilePictureURL;
   return {
+    profilePictureURL,
     username,
     isLoggedIn: state.firebase.auth.uid,
   };
