@@ -1,7 +1,7 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { SubmitPage } from './SubmitPage';
+import { SubmitPage } from '../components/SubmitPage/SubmitPage';
 
 // needed for shallow rendering
 configure({ adapter: new Adapter() });

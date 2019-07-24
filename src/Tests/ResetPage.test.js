@@ -1,7 +1,7 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { ResetPage } from './ResetPage';
+import { ResetPage } from '../components/ResetPage/ResetPage';
 
 // needed for shallow rendering
 configure({ adapter: new Adapter() });
