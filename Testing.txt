@@ -7,4 +7,4 @@ the user attempts to submit an imcomplete/invalid form.
 We also have created tests that test to make sure functions are being called
 when forms are submitted.
 
-Run 'npm test' to run test files.
+Run 'npm test' to run test files. Press 'a' to run all tests.

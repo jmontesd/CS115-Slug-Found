@@ -69,7 +69,7 @@ export const SubmitPage = (props) => {
   // render this to the screen
   return (
     <div className="container">
-       <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale"  />
+      <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale" />
       {/* onSubmit is called when form submitted */}
       <form onSubmit={onSubmit}>
         <div className="form-group">

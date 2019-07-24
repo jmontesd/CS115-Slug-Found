@@ -22,7 +22,8 @@ export default class MessageViewer extends React.Component {
   };
 
   // message send handler
-  handleMessageSend = () => {
+  handleMessageSend = (e) => {
+    e.preventDefault();
     const { updateMessages, toId, messageGroup } = this.props;
     const { message } = this.state;
     updateMessages(toId, message, messageGroup);
@@ -64,20 +65,19 @@ export default class MessageViewer extends React.Component {
             }}
           />
         </div>
-        <div className="MessageViewer-message-input-and-send">
+        <form
+          className="MessageViewer-message-input-and-send"
+          onSubmit={(e) => this.handleMessageSend(e)}
+        >
           <input
             className="MessageViewer-message-input"
             value={message}
             onChange={(e) => this.setState({ message: e.target.value })}
           />
-          <button
-            className="btn btn-secondary MessageViewer-message-button"
-            type="button"
-            onClick={this.handleMessageSend}
-          >
+          <button className="btn btn-secondary MessageViewer-message-button" type="submit">
             Send
           </button>
-        </div>
+        </form>
       </>
     );
   }

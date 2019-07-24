@@ -3,7 +3,7 @@ import './SideBar.scss';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import M from 'materialize-css';
 import { signOut as actionSignOut } from '../../store/actions/authActions';
 
@@ -14,33 +14,12 @@ export class SideBar extends React.Component {
     M.Collapsible.init(this.collapsible);
   }
 
-  // currently, proper buttons show up on sidebar, but signOut does not work
-  // my profile takes you to a profile, but it does not show posts.
-
   render() {
     const { isLoggedIn, signOut, username, profilePictureURL } = this.props;
 
-    const renderSubmit = (
-      <Link to="/submit">
-        {' '}
-        <i className="material-icons">sort</i> New Post{' '}
-      </Link>
-    );
-
-    const renderSignOut = (
-      <Link to="/loginpage" onClick={signOut}>
-        {' '}
-        <i className="material-icons">power_settings_new</i> Sign Out{' '}
-      </Link>
-    );
-
-    const renderNothing = ' ';
-
-    if (!isLoggedIn) return <Redirect to="/login" />;
-
     return (
       // adds toggle button to hide sidebar
-      <div className="container section">
+      <div className={`container section${isLoggedIn ? '' : ' d-none'}`}>
         <a href="toggleBtn" className="sidenav-trigger" data-target="menu-side">
           <i className="material-icons">menu</i>
         </a>
@@ -54,19 +33,19 @@ export class SideBar extends React.Component {
         >
           <li>
             <div className="user-view">
-              <div className="background">
-                {/* <img
-                  alt=""
-                  src="https://bodhispiritualcenter.org/wp-content/uploads/2014/10/redwoods-looking-up-650x487.jpg"
-                  className="centered"
-                /> */}
-              </div>
+              <div className="background" />
               {/* // Showcases user profile picture */}
-              <Link to={`/profile/${isLoggedIn}`}>
+              <Link
+                to={`/profile/${isLoggedIn}`}
+                onClick={() => M.Sidenav.getInstance(this.sidenav).close()}
+              >
                 <img alt="" src={profilePictureURL} className="circle" />
               </Link>
               {/* // Showcases username */}
-              <Link to={`/profile/${isLoggedIn}`}>
+              <Link
+                to={`/profile/${isLoggedIn}`}
+                onClick={() => M.Sidenav.getInstance(this.sidenav).close()}
+              >
                 {/* <span class="name white"> Jacqueline Montes</span> */}
                 <span className="center-align name white">{username}</span>
                 <p />
@@ -74,48 +53,40 @@ export class SideBar extends React.Component {
             </div>
             <div className="div" />
           </li>
-            <li>
-              <div>
-                <li>
-                  {' '}
-                  <Link to="/">
-                    <i className="material-icons">home</i> HomePage{' '}
-                  </Link>{' '}
-                </li>
-              </div>
-            </li>
-            <li>
-              <div>
-                <li>
-                  {' '}
-                  <Link to={`/profile/${isLoggedIn}`}>
-                    {' '}
-                    <i className="material-icons">person</i> My Profile{' '}
-                  </Link>{' '}
-                </li>
-              </div>
-            </li>
-            <li>
-              <div>
-                <li>
-                  {' '}
-                  <Link to="/messages">
-                    {' '}
-                    <i className="material-icons">messages</i> My Messages{' '}
-                  </Link>
-                </li>
-              </div>
-            </li>
-            <li>
-              <div>
-                <li> {isLoggedIn ? renderSubmit : renderNothing}</li>
-              </div>
-            </li>
-            <li>
-              <div>
-                <li> {isLoggedIn ? renderSignOut : renderNothing}</li>
-              </div>
-            </li>
+          <li>
+            <Link to="/" onClick={() => M.Sidenav.getInstance(this.sidenav).close()}>
+              <i className="material-icons">home</i>HomePage
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={`/profile/${isLoggedIn}`}
+              onClick={() => M.Sidenav.getInstance(this.sidenav).close()}
+            >
+              <i className="material-icons">person</i>My Profile
+            </Link>
+          </li>
+          <li>
+            <Link to="/messages" onClick={() => M.Sidenav.getInstance(this.sidenav).close()}>
+              <i className="material-icons">messages</i>My Messages
+            </Link>
+          </li>
+          <li>
+            <Link to="/submit" onClick={() => M.Sidenav.getInstance(this.sidenav).close()}>
+              <i className="material-icons">sort</i>New Post
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/loginpage"
+              onClick={() => {
+                M.Sidenav.getInstance(this.sidenav).close();
+                signOut();
+              }}
+            >
+              <i className="material-icons">power_settings_new</i>Sign Out
+            </Link>
+          </li>
         </ul>
       </div>
     );

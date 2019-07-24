@@ -12,7 +12,7 @@ import { createMessageGroup as createMessageGroupAction } from '../../store/acti
 export const ProfilePage = (props) => {
   // used to redirect user
   const [redirect, setRedirect] = useState('');
-  if (redirect) return <Redirect to="/messages" />;
+  if (redirect) return <Redirect to={redirect} />;
   // these are the props need for this component
   const {
     createMessageGroup,
@@ -40,14 +40,12 @@ export const ProfilePage = (props) => {
     if (!messageGroup) {
       createMessageGroup(id);
     }
-    setRedirect('/messages');
+    setRedirect(`/messages/${id}`);
   };
   // render this to the screen
   return (
-    
     <div className="container">
-              <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale"  />
-
+      <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale" />
       <div className="ProfilePage-row row">
         <div className="col-8">
           {/* if there are posts, render them to the screen */}
@@ -113,7 +111,6 @@ const mapStateToProps = (state, props) => {
   const messageGroup =
     allMessageGroups &&
     allMessageGroups.find((m) => m.smallerId === smallerId && m.greaterId === greaterId);
-
   return {
     id,
     isLoggedIn: state.firebase.auth.uid,
@@ -137,5 +134,5 @@ export default compose(
     mapDispatchToProps,
   ),
   // connect firestore with all posts and users
-  firestoreConnect([{ collection: 'posts' }, { collection: 'users' }]),
+  firestoreConnect([{ collection: 'messages' }, { collection: 'posts' }, { collection: 'users' }]),
 )(ProfilePage);

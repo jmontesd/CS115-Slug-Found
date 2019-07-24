@@ -29,7 +29,9 @@
   align-self: flex-end;
   margin-left: 1rem;
 }
+
 .MessageViewer-container {
+  height: calc(100vh - 120px);
   border: 1px solid rgb(218, 220, 224);
   padding: 1rem;
   overflow: scroll;

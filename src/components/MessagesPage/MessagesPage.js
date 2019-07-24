@@ -10,15 +10,15 @@ import { updateMessages as updateMessagesAction } from '../../store/actions/mess
 import logo from '../logo.jpg';
 
 export const MessagesPage = (props) => {
-  const [messageGroupIndex, setMessageGroupIndex] = useState(0);
   // necessary components
-  const { uid, isLoggedIn, users, messageGroups, updateMessages } = props;
+  const { uid, index, isLoggedIn, users, messageGroups, updateMessages } = props;
+  const [messageGroupIndex, setMessageGroupIndex] = useState(index);
   // if user not logged in, redirect
   if (!isLoggedIn) return <Redirect to="/login" />;
   const handleClick = (otherUserId) => {
-    messageGroups.forEach((m, index) => {
+    messageGroups.forEach((m, i) => {
       if (m.smallerId === otherUserId || m.greaterId === otherUserId) {
-        setMessageGroupIndex(index);
+        setMessageGroupIndex(i);
       }
     });
   };
@@ -38,18 +38,18 @@ export const MessagesPage = (props) => {
   // render html
   return (
     <div className="container">
-      <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale"  />
+      <img className="logo" src={logo} alt="Logo" width={300} inputMode="scale" />
       <div className="MessagesPage-container">
         {users.length > 0 ? (
           <>
             <ul className="MessagesPage-container__users list-group list-group-flush">
               {users &&
-                users.map(({ user }, index) => (
+                users.map(({ user }, i) => (
                   <button
                     type="button"
                     onClick={() => handleClick(user.id)}
                     className={`list-group-item${
-                      index === messageGroupIndex ? ' list-group-item-secondary' : ''
+                      i === messageGroupIndex ? ' list-group-item-secondary' : ''
                     }`}
                     key={uuid()}
                   >
@@ -75,7 +75,7 @@ export const MessagesPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   // get all messages
   const { messages: allMessageGroups, users: allUsers } = state.firestore.ordered;
   // get userid
@@ -83,7 +83,17 @@ const mapStateToProps = (state) => {
   // find the message group
   const messageGroups =
     allMessageGroups && allMessageGroups.filter((m) => m.smallerId === uid || m.greaterId === uid);
-  // find user
+  // if there is id in URL, then find that message group
+  const { id } = props.match.params;
+  let index = 0;
+  if (id && messageGroups) {
+    messageGroups.forEach((m, i) => {
+      if (m.smallerId === id || m.greaterId === id) {
+        index = i;
+      }
+    });
+  }
+  // find users
   const users = [];
   if (messageGroups) {
     messageGroups.forEach((messageGroup) => {
@@ -99,6 +109,7 @@ const mapStateToProps = (state) => {
     });
   }
   return {
+    index,
     uid,
     messageGroups,
     users,
