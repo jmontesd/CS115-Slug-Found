@@ -13,11 +13,11 @@ code {
 .auth-wrapper {
   border: 1px solid rgb(218, 220, 224);
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 50px;
   max-width: 30rem;
   margin: 0 auto;
+  margin-top: 2rem;
 }
 .cursor-pointer {
   cursor: pointer;
 }
-/* to fix conflict with bootstrap and materalize */
